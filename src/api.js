@@ -31,9 +31,9 @@ class NostalgiaApi {
       throw Array.isArray(message) ? message : [message];
     }
   }
-
+  // todo missing getall routes???, data
   // Individual API routes
-
+  ///user routes
   static async getUser(username) {
     let res = await this.request(`users/${username}`);
     return res.user;
@@ -50,21 +50,22 @@ class NostalgiaApi {
     let res = await this.request(`auth/token`, data, "post");
     return res.token;
   }
-
+  ///decade routes
   static async getDecades() {
-    let res = await this.request(`decade/`);
+    let res = await this.request(`decade/`, {}, "get");
     return res.decades;
   }
   static async getDecade(id) {
-    let res = await this.request(`decade/${id}`);
+    let res = await this.request(`decade/${id}`, {}, "get");
     return res.decade;
   }
+  ///post routes
   static async getPost(id) {
     let res = await this.request(`posts/${id}`);
     return res.post;
   }
   static async postPost(data) {
-    let res = await this.request(`posts/`, data, "post");
+    let res = await this.request(`posts`, data, "post");
     return res.post;
   }
   static async patchPost(id, data) {
@@ -75,11 +76,11 @@ class NostalgiaApi {
     let res = await this.request(`posts/${id}`, {}, "delete");
     return res;
   }
-  static async postComment(id) {
+  static async postComment(id, data) {
     let res = await this.request(`posts/${id}/comments`, data, "post");
     return res.comment;
   }
-  static async patchComment(id, commentid) {
+  static async patchComment(id, data, commentid) {
     let res = await this.request(
       `posts/${id}/comments/${commentid}`,
       data,
@@ -87,7 +88,7 @@ class NostalgiaApi {
     );
     return res.comment;
   }
-  static async deleteComment(id, commentid) {
+  static async deleteComment(id, data, commentid) {
     let res = await this.request(
       `posts/${id}/comments/${commentid}`,
       data,
@@ -95,10 +96,10 @@ class NostalgiaApi {
     );
     return res.comment;
   }
-  static async postPost(data) {
-    let res = await this.request(`posts/`, data, "post");
-    return res.post;
-  }
+  // static async postPost(data) {
+  //   let res = await this.request(`posts/`, data, "post");
+  //   return res.post;
+  // }
   static async like(username, id) {
     await this.request(`users/${username}/favorite/${id}`, {}, "post");
     let res = await this.request(`users/${username}`);
@@ -116,6 +117,7 @@ class NostalgiaApi {
 }
 
 // for now, put token ("testuser" / "password" on class)
-JoblyApi.token = null;
+// NostalgiaApi.token =
+//   "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InRlc3R1c2VyIiwiaWF0IjoxNjM4NDg3MjY0fQ.hZ6aUMBcrVhFHtk9updl1XMVfk57JQoay4msPCVcS4M";
 
-export default JoblyApi;
+export default NostalgiaApi;
