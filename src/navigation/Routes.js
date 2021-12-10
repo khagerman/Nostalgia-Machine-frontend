@@ -2,13 +2,13 @@ import React from "react";
 import { Switch, Route, Redirect } from "react-router-dom";
 import Homepage from "../homepage/Homepage";
 import DecadePage from "../decade/DecadePage";
-import JobList from "../jobs/JobList";
+
 import PostDetail from "../post/PostDetail";
 import LoginForm from "../auth/LoginForm";
-import ProfileForm from "../profiles/ProfileForm";
+import NewPost from "../post/NewPost";
 import SignupForm from "../auth/SignupForm";
 import PrivateRoute from "./PrivateRoute";
-
+import Profile from "../profile/Profile";
 /** Site-wide routes.
  *
  * Parts of site should only be visitable when logged in. Those routes are
@@ -33,16 +33,18 @@ function Routes({ login, signup }) {
           <SignupForm signup={signup} />
         </Route>
 
-        <Route exact path="/decade/:id">
+        <Route exact path="/decade/:decadeId">
           <DecadePage />
         </Route>
-
+        <PrivateRoute exact path="/post/new">
+          <NewPost />
+        </PrivateRoute>
         <Route exact path="/post/:id">
           <PostDetail />
         </Route>
 
         <PrivateRoute path="/profile">
-          <ProfileForm />
+          <Profile />
         </PrivateRoute>
 
         <Redirect to="/" />
