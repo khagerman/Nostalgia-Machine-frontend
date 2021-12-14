@@ -1,26 +1,74 @@
-import * as React from "react";
+import React, { useContext, useEffect, useState } from "react";
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
 import Typography from "@mui/material/Typography";
 import { CardActionArea } from "@mui/material";
 import { Link } from "react-router-dom";
+import UserContext from "../auth/UserContext";
+import NostalgiaApi from "../api";
+import PopUpEditPost from "./EditPost";
+export default function PostCard({ id, url, title, username, handleLike }) {
+  const { currentUser, likedIds, setLikedIds } = useContext(UserContext);
+  const [show, setShow] = useState(false);
 
-export default function PostCard({ id, url, title }) {
+  const togglePop = () => {
+    setShow(!show);
+  };
+  async function handleDelete(postId) {
+    try {
+      await NostalgiaApi.deletePost(postId);
+      return { success: true };
+    } catch (errors) {
+      console.error(" failed", errors);
+      return { success: false, errors };
+    }
+  }
+  // async function handleEdit(postId) {
+  //   try {
+  //     await NostalgiaApi.editPost(postId);
+  //     return { success: true };
+  //   } catch (errors) {
+  //     console.error("login failed", errors);
+  //     return { success: false, errors };
+  //   }
+  // }
   return (
-    <Card sx={{ maxWidth: 345 }}>
-      <Link to={`/post/${id}`}>
-        <CardMedia component="img" height="200" image={url} alt={title} />
-        <CardContent>
-          <Typography gutterBottom variant="h5" component="div">
-            {title}
-          </Typography>
-          {/* <Typography variant="body2" color="text.secondary">
-            Lizards are a widespread group of squamate reptiles, with over 6,000
-            species, ranging across all continents except Antarctica
-          </Typography> */}
-        </CardContent>
-      </Link>
-    </Card>
+    <div>
+      {show ? (
+        <PopUpEditPost toggle={togglePop} url={url} title={title} />
+      ) : (
+        <Card sx={{ maxWidth: 345 }}>
+          <Link to={`/post/${id}`}>
+            <CardMedia component="img" height="200" image={url} alt={title} />
+            <CardContent>
+              <Typography gutterBottom variant="h5" component="div">
+                {title}
+              </Typography>
+              <Typography variant="body2" color="text.secondary">
+                Posted by: {username}
+              </Typography>
+            </CardContent>
+          </Link>
+
+          {username !== currentUser.username ? (
+            <button onClick={handleLike}>
+              {likedIds.has(id) ? "unLike" : "like"}
+            </button>
+          ) : (
+            <>
+              <button onClick={togglePop}>
+                Edit
+                <i class="fas fa-edit"></i>
+              </button>
+              <button onClick={() => handleDelete(id)}>
+                Delete
+                <i class="fas fa-trash-alt"></i>
+              </button>
+            </>
+          )}
+        </Card>
+      )}
+    </div>
   );
 }

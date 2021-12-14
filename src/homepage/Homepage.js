@@ -7,12 +7,10 @@ function Homepage() {
   return (
     <div className="Homepage">
       <h1>Nostalgia Machine</h1>
-      {/* <p>
-        <Link to="/login">Log in</Link>
-      </p>
       <p>
-        <Link to="/signup">Sign up</Link>
-      </p> */}
+        Welcome to the Nostalgia Machine. I place to share and enjoy memories
+        from times of yore.
+      </p>
     </div>
   );
 }

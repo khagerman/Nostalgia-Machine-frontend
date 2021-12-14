@@ -17,7 +17,7 @@ import Profile from "../profile/Profile";
  * Visiting a non-existant route redirects to the homepage.
  */
 
-function Routes({ login, signup }) {
+function Routes({ login, signup, userLikes }) {
   return (
     <div>
       <Switch>

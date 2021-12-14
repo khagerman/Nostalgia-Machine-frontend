@@ -4,6 +4,7 @@ import NostalgiaApi from "../api";
 import Comment from "../comment/Comment";
 import NewComment from "../comment/NewComment";
 import LoadingSpinner from "../common/LoadingSpinner";
+
 function PostDetail() {
   const { id } = useParams();
   // TODO UPDATE COMMENTS WHEN NEW COMMENT ADDED
