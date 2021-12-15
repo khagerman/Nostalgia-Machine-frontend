@@ -7,7 +7,7 @@ import LoadingSpinner from "../common/LoadingSpinner";
 
 function PostDetail() {
   const { id } = useParams();
-  // TODO UPDATE COMMENTS WHEN NEW COMMENT ADDED
+  //TODO taniya is this logic okay? to send another api request to update?
   const [post, setPost] = useState([]);
 
   useEffect(() => {
@@ -21,13 +21,36 @@ function PostDetail() {
   if (!post || !comments) return <LoadingSpinner />;
 
   //   console.log(comments.length);
-  const handleUpdate = () => {
+  const handleNewPost = () => {
     async function getData() {
       let data = await NostalgiaApi.getPost(id);
       setPost(data);
     }
     getData();
   };
+
+  async function handleEdit(postId, newData, id) {
+    try {
+      await NostalgiaApi.patchComment(postId, newData, id);
+      let data = await NostalgiaApi.getPost(postId);
+      setPost(data);
+      return { success: true };
+    } catch (errors) {
+      console.error(" failed", errors);
+      return { success: false, errors };
+    }
+  }
+  async function handleDelete(postId, id) {
+    try {
+      await NostalgiaApi.deleteComment(postId, id);
+      let data = await NostalgiaApi.getPost(postId);
+      setPost(data);
+      return { success: true };
+    } catch (errors) {
+      console.error(" failed", errors);
+      return { success: false, errors };
+    }
+  }
   return (
     <>
       <h1>Post</h1>
@@ -42,14 +65,17 @@ function PostDetail() {
               text={c.text}
               key={c.id}
               commentId={c.id}
+              postId={id}
               username={c.username}
+              handleDelete={() => handleDelete(id, c.id)}
+              handleEdit={handleEdit}
             />
           ))
         ) : (
           <h2>no comments yet!</h2>
         )}
 
-        <NewComment postId={id} onUpdate={() => handleUpdate()} />
+        <NewComment postId={id} onUpdate={() => handleNewPost()} />
       </div>
     </>
   );

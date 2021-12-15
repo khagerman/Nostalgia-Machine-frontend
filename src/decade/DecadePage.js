@@ -7,8 +7,9 @@ function DecadePage() {
   const { decadeId } = useParams();
 
   const [decade, setDecade] = useState([]);
-  const { currentUser, likedIds, setLikedIds } = useContext(UserContext);
-  const [likes, setLikes] = useState([]);
+  const { currentUser, likedIds, setLikedIds, likes, setLikes } =
+    useContext(UserContext);
+
   // const [likedIds, setLikedIds] = useState(new Set([]));
   useEffect(() => {
     async function getData() {
@@ -20,19 +21,19 @@ function DecadePage() {
   console.log(decade);
   let posts = decade.posts;
 
-  useCallback(() => {
-    async function getUserLikes(username) {
-      try {
-        setLikes(await NostalgiaApi.userLikes(username));
-      } catch (errors) {
-        console.error("login failed", errors);
-        return { success: false, errors };
-      }
-    }
-    if (currentUser) {
-      getUserLikes(currentUser.username);
-    }
-  }, [decadeId, likes]);
+  // useCallback(() => {
+  //   async function getUserLikes(username) {
+  //     try {
+  //       setLikes(await NostalgiaApi.userLikes(username));
+  //     } catch (errors) {
+  //       console.error("login failed", errors);
+  //       return { success: false, errors };
+  //     }
+  //   }
+  //   if (currentUser) {
+  //     getUserLikes(currentUser.username);
+  //   }
+  // }, [decadeId, likes]);
   async function unlike(id) {
     try {
       await NostalgiaApi.unlike(currentUser.username, id);
@@ -71,7 +72,6 @@ function DecadePage() {
             title={p.title}
             url={p.url}
             handleLike={() => handleLike(p.id)}
-            likedIds={likedIds}
           />
         ))
       ) : (

@@ -9,7 +9,8 @@ import UserContext from "../auth/UserContext";
 import NostalgiaApi from "../api";
 import PopUpEditPost from "./EditPost";
 export default function PostCard({ id, url, title, username, handleLike }) {
-  const { currentUser, likedIds, setLikedIds } = useContext(UserContext);
+  const { currentUser, likedIds, setLikedIds, setCurrentUser } =
+    useContext(UserContext);
   const [show, setShow] = useState(false);
 
   const togglePop = () => {
@@ -18,6 +19,8 @@ export default function PostCard({ id, url, title, username, handleLike }) {
   async function handleDelete(postId) {
     try {
       await NostalgiaApi.deletePost(postId);
+      let currentUser = await NostalgiaApi.getUser(username);
+      setCurrentUser(currentUser);
       return { success: true };
     } catch (errors) {
       console.error(" failed", errors);
@@ -36,7 +39,7 @@ export default function PostCard({ id, url, title, username, handleLike }) {
   return (
     <div>
       {show ? (
-        <PopUpEditPost toggle={togglePop} url={url} title={title} />
+        <PopUpEditPost id={id} toggle={togglePop} url={url} title={title} />
       ) : (
         <Card sx={{ maxWidth: 345 }}>
           <Link to={`/post/${id}`}>
@@ -51,15 +54,19 @@ export default function PostCard({ id, url, title, username, handleLike }) {
             </CardContent>
           </Link>
 
-          {username !== currentUser.username ? (
+          {username !== currentUser?.username ? (
             <button onClick={handleLike}>
-              {likedIds.has(id) ? "unLike" : "like"}
+              {likedIds.has(id) ? (
+                <i class="fas fa-heart"></i>
+              ) : (
+                <i class="far fa-heart"></i>
+              )}
             </button>
           ) : (
             <>
               <button onClick={togglePop}>
                 Edit
-                <i class="fas fa-edit"></i>
+                <span class="fas fa-edit"></span>
               </button>
               <button onClick={() => handleDelete(id)}>
                 Delete

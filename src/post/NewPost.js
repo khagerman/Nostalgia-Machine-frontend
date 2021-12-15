@@ -1,7 +1,8 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { useHistory } from "react-router-dom";
 import Alert from "../common/Alert";
 import NostalgiaApi from "../api";
+import UserContext from "../auth/UserContext";
 /** Login form.
  *
  * Shows form and manages update to state on changes.
@@ -14,23 +15,25 @@ import NostalgiaApi from "../api";
  */
 
 function NewPost() {
+  const { currentUser, setCurrentUser } = useContext(UserContext);
   const history = useHistory();
   const [formData, setFormData] = useState({
     title: "",
     url: "",
   });
   const [decade, setDecade] = useState("1");
-
+  let username = currentUser.username;
   const [formErrors, setFormErrors] = useState([]);
   async function handleSubmit(evt) {
     evt.preventDefault();
 
     try {
-      console.log(formData);
       let result = await NostalgiaApi.postPost({
         ...formData,
         decade_id: parseInt(decade),
       });
+      let currentUser = await NostalgiaApi.getUser(username);
+      setCurrentUser(currentUser);
       history.push(`/decade/${parseInt(decade)}`);
     } catch (errors) {
       setFormErrors({ success: false, errors });

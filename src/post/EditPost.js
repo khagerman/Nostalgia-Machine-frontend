@@ -1,10 +1,14 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import Alert from "../common/Alert";
 import NostalgiaApi from "../api";
-export default function PopUpEditPost({ toggle, title, url }) {
+import { useHistory } from "react-router-dom";
+import UserContext from "../auth/UserContext";
+export default function PopUpEditPost({ id, toggle, title, url }) {
+  const { currentUser, setCurrentUser } = useContext(UserContext);
   let handleClick = () => {
     toggle();
   };
+  let username = currentUser.username;
   const [formData, setFormData] = useState({
     title: title,
     url: url,
@@ -16,11 +20,14 @@ export default function PopUpEditPost({ toggle, title, url }) {
   const [formErrors, setFormErrors] = useState([]);
   async function handleSubmit(evt) {
     evt.preventDefault();
-
     try {
-      await NostalgiaApi.editPost({
+      await NostalgiaApi.patchPost(id, {
         ...formData,
       });
+      toggle();
+      let currentUser = await NostalgiaApi.getUser(username);
+      setCurrentUser(currentUser);
+      //   history.push(`/profile`);
     } catch (errors) {
       setFormErrors({ success: false, errors });
       console.log(formErrors);
@@ -32,7 +39,7 @@ export default function PopUpEditPost({ toggle, title, url }) {
         <span className="close" onClick={handleClick}>
           &times;
         </span>
-        <form>
+        <form onSubmit={handleSubmit}>
           <div className="form-group">
             <label>Image URL</label>
             <input

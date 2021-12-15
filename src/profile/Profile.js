@@ -4,42 +4,28 @@ import UserContext from "../auth/UserContext";
 import NostalgiaApi from "../api";
 import LoadingSpinner from "../common/LoadingSpinner";
 function Profile() {
-  const { currentUser, likedIds, setLikedIds } = useContext(UserContext);
-  const [likes, setLikes] = useState([]);
-  useEffect(function getLikes() {
-    async function getUserLikes(username) {
-      try {
-        setLikes(await NostalgiaApi.userLikes(username));
-      } catch (errors) {
-        console.error("login failed", errors);
-        return { success: false, errors };
-      }
-    }
+  const { currentUser, likedIds, setLikedIds, likes, setLikes } =
+    useContext(UserContext);
 
-    if (currentUser) {
-      getUserLikes(currentUser.username);
-    }
-  }, []);
-  console.log(likes, "likes");
+  // let getLikes = useCallback(
+  //   async function getUserLikes(username) {
+  //     try {
+  //       setLikes(await NostalgiaApi.userLikes(username));
+  //     } catch (errors) {
+  //       console.error("login failed", errors);
+  //       return { success: false, errors };
+  //     }
 
-  useCallback(() => {
-    async function getUserLikes(username) {
-      try {
-        setLikes(await NostalgiaApi.userLikes(username));
-      } catch (errors) {
-        console.error("login failed", errors);
-        return { success: false, errors };
-      }
-    }
-    if (currentUser) {
-      getUserLikes(currentUser.username);
-    }
-  }, [likes]);
+  //     if (currentUser) {
+  //       getUserLikes(currentUser.username);
+  //     }
+  //   },
+  //   [likes]
+  // );
 
   async function unlike(id) {
     try {
       await NostalgiaApi.unlike(currentUser.username, id);
-      console.log("unliked");
     } catch (e) {
       console.log(e);
     }
@@ -69,8 +55,9 @@ function Profile() {
       <h1>Hey, {currentUser.username}!</h1>
       {console.log(likes.favorites)}
       <h2>Your likes and or fond memories</h2>
+      {console.log(likes)}
       {likes.length === 0 ? (
-        <h2>You havn't liked anything! </h2>
+        <h3>You havn't liked anything! </h3>
       ) : (
         likes.favorites.map((p) => (
           <PostCard
@@ -85,17 +72,21 @@ function Profile() {
         ))
       )}
       <h2>Memories you have shared</h2>
-      {currentUser.posts.map((p) => (
-        <PostCard
-          id={p.id}
-          username={p.username}
-          key={p.id}
-          title={p.title}
-          url={p.url}
-          handleLike={() => handleLike(p.id)}
-          likedIds={likedIds}
-        />
-      ))}
+      {currentUser.posts.length === 0 ? (
+        <h3>You haven't shared anything....yet!</h3>
+      ) : (
+        currentUser.posts.map((p) => (
+          <PostCard
+            id={p.id}
+            username={p.username}
+            key={p.id}
+            title={p.title}
+            url={p.url}
+            handleLike={() => handleLike(p.id)}
+            likedIds={likedIds}
+          />
+        ))
+      )}
     </>
   );
 }

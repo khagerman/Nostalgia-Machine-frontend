@@ -17,6 +17,7 @@ export default function NewComment({ postId, onUpdate }) {
       });
     } catch (errors) {
       setFormErrors({ success: false, errors });
+      alert(errors);
     }
   }
 
@@ -31,6 +32,12 @@ export default function NewComment({ postId, onUpdate }) {
   return (
     <div>
       <form className="form-inline" onSubmit={handleSubmit}>
+        <div>
+          {formErrors.length ? (
+            <Alert type="danger" messages={formErrors} />
+          ) : null}
+          {console.log(formErrors)}
+        </div>
         <label htmlFor="text">Comment</label>
         <input
           type="text"
@@ -43,7 +50,6 @@ export default function NewComment({ postId, onUpdate }) {
           Add
         </button>
       </form>
-      {formErrors.length ? <Alert type="danger" messages={formErrors} /> : null}
     </div>
   );
 }

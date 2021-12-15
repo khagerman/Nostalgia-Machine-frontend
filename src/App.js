@@ -12,7 +12,7 @@ function App() {
   const [likedIds, setLikedIds] = useState(new Set([]));
   const [infoLoaded, setInfoLoaded] = useState(false);
   const [token, setToken] = useLocalStorage("token");
-
+  const [likes, setLikes] = useState([]);
   useEffect(() => {
     async function currentUser() {
       if (token) {
@@ -43,6 +43,21 @@ function App() {
     let token = await NostalgiaApi.login(data);
     setToken(token);
   }
+
+  useEffect(() => {
+    async function getUserLikes(username) {
+      try {
+        setLikes(await NostalgiaApi.userLikes(username));
+      } catch (errors) {
+        console.error("likes failed", errors);
+        return { success: false, errors };
+      }
+    }
+    console.log("this ran!");
+    if (currentUser) {
+      getUserLikes(currentUser.username);
+    }
+  }, [likedIds]);
 
   async function getLoggedInUserLikesIds(username) {
     let likes = await NostalgiaApi.userLikes(username);
@@ -83,7 +98,14 @@ function App() {
   return (
     <BrowserRouter>
       <UserContext.Provider
-        value={{ currentUser, setCurrentUser, likedIds, setLikedIds }}
+        value={{
+          currentUser,
+          setCurrentUser,
+          likedIds,
+          setLikedIds,
+          likes,
+          setLikes,
+        }}
       >
         <div className="App">
           <Navigation logout={logout} />

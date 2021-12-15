@@ -88,11 +88,11 @@ class NostalgiaApi {
     );
     return res.comment;
   }
-  static async deleteComment(id, data, commentid) {
+  static async deleteComment(id, commentid) {
     let res = await this.request(
       `posts/${id}/comments/${commentid}`,
-      data,
-      "patch"
+      {},
+      "delete"
     );
     return res.comment;
   }
