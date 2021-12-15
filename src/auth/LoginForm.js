@@ -1,13 +1,15 @@
 import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
-import Alert from "../common/Alert";
+import { Formik, Form, Field, ErrorMessage } from "formik";
+import { object, string } from "yup";
+import { TextField, FormGroup, Container, Button } from "@mui/material";
 
 /** Login form.
  *
  * Shows form and manages update to state on changes.
  * On submission:
  * - calls login function prop
- * - redirects to /companies route
+ * - redirects to / route
  *
  * Routes -> LoginForm -> Alert
  * Routed as /login
@@ -15,79 +17,64 @@ import Alert from "../common/Alert";
 
 function LoginForm({ login }) {
   const history = useHistory();
-  const [formData, setFormData] = useState({
-    username: "",
-    password: "",
+
+  const LoginSchema = object({
+    username: string().required().min(3).max(15),
+    password: string().required().min(5).max(20),
   });
-  const [formErrors, setFormErrors] = useState([]);
-
-  /** Handle form submit:
-   *
-   * Calls login func prop and, if successful, redirect to home.
-   */
-
-  async function handleSubmit(evt) {
-    evt.preventDefault();
-    let result = await login(formData);
+  async function handleSubmit(values) {
+    let result = await login(values);
     if (result.success) {
       history.push("/");
     } else {
-      setFormErrors(result.errors);
+      alert(result.errors);
     }
   }
-
-  /** Update form data field */
-  function handleChange(evt) {
-    const { name, value } = evt.target;
-    setFormData((l) => ({ ...l, [name]: value }));
-  }
-
   return (
-    <div className="LoginForm">
-      <div className="container col-md-6 offset-md-3 col-lg-4 offset-lg-4">
-        <h3 className="mb-3">Log In</h3>
-
-        <div className="card">
-          <div className="card-body">
-            <form onSubmit={handleSubmit}>
-              <div className="form-group">
-                <label>Username</label>
-                <input
+    <div>
+      <h1>Login</h1>
+      <Formik
+        initialValues={{
+          username: "",
+          password: "",
+        }}
+        validationSchema={LoginSchema}
+        onSubmit={(values) => {
+          handleSubmit(values);
+        }}
+      >
+        {({ errors, touched }) => (
+          <Container maxWidth="xs">
+            <Form>
+              <FormGroup>
+                <Field
+                  id="username"
                   name="username"
-                  className="form-control"
-                  value={formData.username}
-                  onChange={handleChange}
-                  autoComplete="username"
-                  required
+                  label="Username"
+                  as={TextField}
                 />
-              </div>
-              <div className="form-group">
-                <label>Password</label>
-                <input
-                  type="password"
+                {errors.username && touched.username ? (
+                  <div style={{ color: "red" }}>{errors.username}</div>
+                ) : null}
+
+                <Field
+                  id="password"
+                  as={TextField}
                   name="password"
-                  className="form-control"
-                  value={formData.password}
-                  onChange={handleChange}
-                  autoComplete="current-password"
-                  required
+                  type="password"
+                  label="Password"
                 />
-              </div>
-
-              {formErrors.length ? (
-                <Alert type="danger" messages={formErrors} />
-              ) : null}
-
-              <button
-                className="btn btn-primary float-right"
-                onSubmit={handleSubmit}
-              >
-                Submit
-              </button>
-            </form>
-          </div>
-        </div>
-      </div>
+                {errors.password && touched.password ? (
+                  <div style={{ color: "red" }}>{errors.password}</div>
+                ) : null}
+              </FormGroup>
+              <Button variant="contained" type="submit">
+                Login
+              </Button>
+            </Form>
+          </Container>
+        )}
+      </Formik>
     </div>
   );
 }
