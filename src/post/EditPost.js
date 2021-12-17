@@ -3,70 +3,96 @@ import Alert from "../common/Alert";
 import NostalgiaApi from "../api";
 import { useHistory } from "react-router-dom";
 import UserContext from "../auth/UserContext";
-export default function PopUpEditPost({ id, toggle, title, url }) {
+import { ToastContainer, toast } from "react-toastify";
+import { Container, Card, FormGroup, TextField, Button } from "@mui/material";
+import { Formik, Form, Field, ErrorMessage } from "formik";
+import { object, string } from "yup";
+export default function PopUpEditPost({
+  id,
+  toggle,
+  title,
+  url,
+  updatedPost,
+  updatePost,
+}) {
   const { currentUser, setCurrentUser } = useContext(UserContext);
+
   let handleClick = () => {
     toggle();
   };
-  let username = currentUser.username;
-  const [formData, setFormData] = useState({
-    title: title,
-    url: url,
-  });
-  function handleChange(evt) {
-    const { name, value } = evt.target;
-    setFormData((data) => ({ ...data, [name]: value }));
-  }
-  const [formErrors, setFormErrors] = useState([]);
-  async function handleSubmit(evt) {
-    evt.preventDefault();
+
+  let username = currentUser?.username;
+
+  async function handleSubmit(values) {
     try {
-      await NostalgiaApi.patchPost(id, {
-        ...formData,
+      let post = await NostalgiaApi.patchPost(id, {
+        ...values,
       });
       toggle();
       let currentUser = await NostalgiaApi.getUser(username);
       setCurrentUser(currentUser);
-      //   history.push(`/profile`);
+      updatePost(post);
     } catch (errors) {
-      setFormErrors({ success: false, errors });
-      console.log(formErrors);
+      console.log(errors);
     }
   }
+
+  const PostSchema = object({
+    url: string().required().url(),
+    title: string().required().min(1).max(100),
+  });
   return (
-    <div className="modal">
-      <div className="modal_content">
-        <span className="close" onClick={handleClick}>
-          &times;
-        </span>
-        <form onSubmit={handleSubmit}>
-          <div className="form-group">
-            <label>Image URL</label>
-            <input
-              name="url"
-              className="form-control"
-              value={url}
-              onChange={handleChange}
-            />
-          </div>
-          <div className="form-group">
-            <label>Post Text</label>
-            <input
-              name="title"
-              className="form-control"
-              value={formData.title}
-              onChange={handleChange}
-            />
-          </div>
-          <button
-            type="submit"
-            className="btn btn-primary float-right"
-            onSubmit={handleSubmit}
-          >
-            Submit
-          </button>
-        </form>
-      </div>
-    </div>
+    <Card sx={{ maxWidth: 345 }}>
+      <span className="close" onClick={handleClick}>
+        &times;
+      </span>
+      <Formik
+        initialValues={{
+          url: url,
+          title: title,
+        }}
+        validationSchema={PostSchema}
+        onSubmit={(values) => {
+          handleSubmit(values);
+        }}
+      >
+        {({ errors, touched }) => (
+          <Form>
+            <FormGroup>
+              <label>Image URL</label>
+              <Field
+                name="url"
+                className="form-control"
+                label="Image URL"
+                as={TextField}
+              />
+              {errors.url && touched.url ? (
+                <div style={{ color: "red" }}>{errors.url}</div>
+              ) : null}
+            </FormGroup>
+            <FormGroup>
+              <label>Post Text</label>
+              <Field
+                name="title"
+                id="title"
+                className="form-control"
+                as={TextField}
+              />
+              {errors.title && touched.title ? (
+                <div style={{ color: "red" }}>{errors.title}</div>
+              ) : null}
+            </FormGroup>
+            <Button
+              variant="contained"
+              type="submit"
+              className="btn btn-primary float-right"
+              onSubmit={handleSubmit}
+            >
+              Submit
+            </Button>
+          </Form>
+        )}
+      </Formik>
+    </Card>
   );
 }

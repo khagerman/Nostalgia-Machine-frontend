@@ -3,6 +3,7 @@ import { useParams } from "react-router-dom";
 import NostalgiaApi from "../api";
 import PostCard from "../post/PostCard";
 import UserContext from "../auth/UserContext";
+import LoadingSpinner from "../common/LoadingSpinner";
 function DecadePage() {
   const { decadeId } = useParams();
 
@@ -17,7 +18,7 @@ function DecadePage() {
       setDecade(data);
     }
     getData();
-  }, [decadeId]);
+  }, [decadeId, currentUser]);
   console.log(decade);
   let posts = decade.posts;
 
@@ -75,7 +76,7 @@ function DecadePage() {
           />
         ))
       ) : (
-        <h2>Loading...</h2>
+        <LoadingSpinner />
       )}
     </>
   );

@@ -1,23 +1,23 @@
 import React, { useState } from "react";
 import Alert from "../common/Alert";
 import NostalgiaApi from "../api";
+import {} from "react-dom/cjs/react-dom.development";
 export default function NewComment({ postId, onUpdate }) {
   const [formData, setFormData] = useState({
     text: "",
   });
-  const [formErrors, setFormErrors] = useState([]);
+  const [formErrors, setFormErrors] = useState(false);
   async function handleSubmit(e) {
     e.preventDefault();
-
     try {
       let result = await NostalgiaApi.postComment(postId, formData);
       onUpdate();
       setFormData({
         text: "",
       });
+      setFormErrors(false);
     } catch (errors) {
-      setFormErrors({ success: false, errors });
-      alert(errors);
+      setFormErrors(true);
     }
   }
 
@@ -31,13 +31,8 @@ export default function NewComment({ postId, onUpdate }) {
   };
   return (
     <div>
+      <p>{formErrors ? <p> {"Comment cannot be blank"} </p> : null}</p>
       <form className="form-inline" onSubmit={handleSubmit}>
-        <div>
-          {formErrors.length ? (
-            <Alert type="danger" messages={formErrors} />
-          ) : null}
-          {console.log(formErrors)}
-        </div>
         <label htmlFor="text">Comment</label>
         <input
           type="text"

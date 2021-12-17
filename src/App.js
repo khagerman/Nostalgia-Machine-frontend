@@ -94,7 +94,31 @@ function App() {
       return { success: false, errors };
     }
   }
+  async function unlike(id) {
+    try {
+      await NostalgiaApi.unlike(currentUser.username, id);
+    } catch (e) {
+      console.log(e);
+    }
+  }
 
+  async function like(id) {
+    try {
+      await NostalgiaApi.like(currentUser.username, id);
+    } catch (e) {
+      console.log(e);
+    }
+  }
+
+  function handleLike(id) {
+    if (likedIds.has(id)) {
+      unlike(id);
+      setLikedIds(new Set(Array.from(likedIds).filter((l) => l !== id)));
+    } else {
+      like(id);
+      setLikedIds(new Set([...likedIds, id]));
+    }
+  }
   return (
     <BrowserRouter>
       <UserContext.Provider
@@ -105,6 +129,9 @@ function App() {
           setLikedIds,
           likes,
           setLikes,
+          like,
+          unlike,
+          handleLike,
         }}
       >
         <div className="App">

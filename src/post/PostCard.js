@@ -12,7 +12,7 @@ export default function PostCard({ id, url, title, username, handleLike }) {
   const { currentUser, likedIds, setLikedIds, setCurrentUser } =
     useContext(UserContext);
   const [show, setShow] = useState(false);
-
+  const [updatedPost, updatePost] = useState(null);
   const togglePop = () => {
     setShow(!show);
   };
@@ -39,7 +39,14 @@ export default function PostCard({ id, url, title, username, handleLike }) {
   return (
     <div>
       {show ? (
-        <PopUpEditPost id={id} toggle={togglePop} url={url} title={title} />
+        <PopUpEditPost
+          id={id}
+          toggle={togglePop}
+          url={url}
+          title={title}
+          updatedPost={updatedPost}
+          updatePost={updatePost}
+        />
       ) : (
         <Card sx={{ maxWidth: 345 }}>
           <Link to={`/post/${id}`}>

@@ -31,7 +31,7 @@ export default function Comment({
       );
       setToggle(false);
     } catch (errors) {
-      setFormErrors({ success: false, errors });
+      setFormErrors({ success: false, error: "comment cannot be blank!" });
       console.log(formErrors);
     }
   }

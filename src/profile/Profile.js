@@ -4,8 +4,16 @@ import UserContext from "../auth/UserContext";
 import NostalgiaApi from "../api";
 import LoadingSpinner from "../common/LoadingSpinner";
 function Profile() {
-  const { currentUser, likedIds, setLikedIds, likes, setLikes } =
-    useContext(UserContext);
+  const {
+    currentUser,
+    likedIds,
+    setLikedIds,
+    likes,
+    setLikes,
+    handleLike,
+    like,
+    unlike,
+  } = useContext(UserContext);
 
   // let getLikes = useCallback(
   //   async function getUserLikes(username) {
@@ -23,31 +31,6 @@ function Profile() {
   //   [likes]
   // );
 
-  async function unlike(id) {
-    try {
-      await NostalgiaApi.unlike(currentUser.username, id);
-    } catch (e) {
-      console.log(e);
-    }
-  }
-  console.log(likedIds);
-  async function like(id) {
-    try {
-      await NostalgiaApi.like(currentUser.username, id);
-    } catch (e) {
-      console.log(e);
-    }
-  }
-
-  function handleLike(id) {
-    if (likedIds.has(id)) {
-      unlike(id);
-      setLikedIds(new Set(Array.from(likedIds).filter((l) => l !== id)));
-    } else {
-      like(id);
-      setLikedIds(new Set([...likedIds, id]));
-    }
-  }
   if (!currentUser || !likes || !likedIds) return <LoadingSpinner />;
   console.log(currentUser, "current");
   return (
