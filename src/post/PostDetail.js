@@ -35,7 +35,6 @@ function PostDetail() {
   const comments = post.comments;
   if (!post || !comments) return <LoadingSpinner />;
 
-  //   console.log(comments.length);
   async function handleDeletePost(postId, username) {
     try {
       await NostalgiaApi.deletePost(postId);
