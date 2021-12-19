@@ -67,6 +67,31 @@ function Navigation({ logout }) {
     return (
       <ul className="navbar-nav ml-auto">
         <li className="nav-item mr-4">
+          <NavLink className="nav-link" to="/decade/1">
+            1960s
+          </NavLink>
+        </li>
+        <li className="nav-item mr-4">
+          <NavLink className="nav-link" to="/decade/2">
+            1970s
+          </NavLink>
+        </li>
+        <li className="nav-item mr-4">
+          <NavLink className="nav-link" to="/decade/3">
+            1980s
+          </NavLink>
+        </li>
+        <li className="nav-item mr-4">
+          <NavLink className="nav-link" to="/decade/4">
+            1990s
+          </NavLink>
+        </li>
+        <li className="nav-item mr-4">
+          <NavLink className="nav-link" to="/decade/5">
+            2000s
+          </NavLink>
+        </li>
+        <li className="nav-item mr-4">
           <NavLink className="nav-link" to="/login">
             Login
           </NavLink>

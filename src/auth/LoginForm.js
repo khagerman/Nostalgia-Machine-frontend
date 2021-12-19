@@ -1,9 +1,10 @@
 import React, { useState } from "react";
-import { useHistory } from "react-router-dom";
+import { useHistory, Link } from "react-router-dom";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import { object, string } from "yup";
 import { TextField, FormGroup, Container, Button } from "@mui/material";
-
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 /** Login form.
  *
  * Shows form and manages update to state on changes.
@@ -11,7 +12,7 @@ import { TextField, FormGroup, Container, Button } from "@mui/material";
  * - calls login function prop
  * - redirects to / route
  *
- * Routes -> LoginForm -> Alert
+ * Routes -> LoginForm
  * Routed as /login
  */
 
@@ -45,6 +46,7 @@ function LoginForm({ login }) {
       >
         {({ errors, touched }) => (
           <Container maxWidth="xs">
+            <ToastContainer autoClose={2000} hideProgressBar={true} />
             <Form>
               <FormGroup>
                 <Field
@@ -72,6 +74,9 @@ function LoginForm({ login }) {
                 Login
               </Button>
             </Form>
+            <h5>
+              No account? <Link to="/signup">sign up here</Link>
+            </h5>
           </Container>
         )}
       </Formik>

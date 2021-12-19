@@ -1,7 +1,8 @@
 import React, { useContext } from "react";
 import { Route, Redirect } from "react-router-dom";
 import UserContext from "../auth/UserContext";
-
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 /** "Higher-Order Component" for private routes.
  *
  * In routing component, use these instead of <Route ...>. This component
@@ -10,11 +11,21 @@ import UserContext from "../auth/UserContext";
  */
 
 function PrivateRoute({ exact, path, children }) {
-  // const { currentUser } = useContext(UserContext);
+  const { currentUser } = useContext(UserContext);
 
-  // if (!currentUser) {
-  //   return <Redirect to="/login" />;
-  // }
+  if (!currentUser) {
+    const notify = () =>
+      toast.error("Please login to continue", {
+        position: toast.POSITION.TOP_CENTER,
+      });
+    notify();
+
+    return (
+      <>
+        <Redirect to="/login" />;
+      </>
+    );
+  }
 
   return (
     <Route exact={exact} path={path}>

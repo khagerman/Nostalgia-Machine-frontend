@@ -4,12 +4,22 @@ import NostalgiaApi from "../api";
 import PostCard from "../post/PostCard";
 import UserContext from "../auth/UserContext";
 import LoadingSpinner from "../common/LoadingSpinner";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 function DecadePage() {
   const { decadeId } = useParams();
 
   const [decade, setDecade] = useState([]);
-  const { currentUser, likedIds, setLikedIds, likes, setLikes } =
-    useContext(UserContext);
+  const {
+    currentUser,
+    likedIds,
+    setLikedIds,
+    likes,
+    setLikes,
+    // handleLike,
+    // like,
+    // unlike,
+  } = useContext(UserContext);
 
   // const [likedIds, setLikedIds] = useState(new Set([]));
   useEffect(() => {
@@ -21,20 +31,10 @@ function DecadePage() {
   }, [decadeId, currentUser]);
   console.log(decade);
   let posts = decade.posts;
-
-  // useCallback(() => {
-  //   async function getUserLikes(username) {
-  //     try {
-  //       setLikes(await NostalgiaApi.userLikes(username));
-  //     } catch (errors) {
-  //       console.error("login failed", errors);
-  //       return { success: false, errors };
-  //     }
-  //   }
-  //   if (currentUser) {
-  //     getUserLikes(currentUser.username);
-  //   }
-  // }, [decadeId, likes]);
+  const notify = () =>
+    toast.warn("Please login to like or save posts!", {
+      position: toast.POSITION.TOP_CENTER,
+    });
   async function unlike(id) {
     try {
       await NostalgiaApi.unlike(currentUser.username, id);
@@ -53,6 +53,9 @@ function DecadePage() {
   }
 
   function handleLike(id) {
+    if (!currentUser) {
+      notify();
+    }
     if (likedIds.has(id)) {
       unlike(id);
       setLikedIds(new Set(Array.from(likedIds).filter((l) => l !== id)));
@@ -64,6 +67,7 @@ function DecadePage() {
   return (
     <>
       <h1>{decade.name}</h1>
+      <ToastContainer autoClose={5000} hideProgressBar={true} />
       {posts ? (
         posts.map((p) => (
           <PostCard

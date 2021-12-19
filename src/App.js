@@ -7,6 +7,8 @@ import Navigation from "./navigation/Navigation";
 import UserContext from "./auth/UserContext";
 import useLocalStorage from "./hooks/useLocalStorage";
 import jwt from "jsonwebtoken";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 function App() {
   const [currentUser, setCurrentUser] = useState(null);
   const [likedIds, setLikedIds] = useState(new Set([]));
@@ -109,9 +111,15 @@ function App() {
       console.log(e);
     }
   }
-
+  const notify = () =>
+    toast.warn("Please login to like or save posts!", {
+      position: toast.POSITION.TOP_CENTER,
+    });
   function handleLike(id) {
-    if (likedIds.has(id)) {
+    console.log("this is working");
+    if (!currentUser) {
+      notify();
+    } else if (likedIds.has(id)) {
       unlike(id);
       setLikedIds(new Set(Array.from(likedIds).filter((l) => l !== id)));
     } else {

@@ -8,6 +8,8 @@ import { Link } from "react-router-dom";
 import UserContext from "../auth/UserContext";
 import NostalgiaApi from "../api";
 import PopUpEditPost from "./EditPost";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 export default function PostCard({ id, url, title, username, handleLike }) {
   const { currentUser, likedIds, setLikedIds, setCurrentUser } =
     useContext(UserContext);
@@ -16,6 +18,7 @@ export default function PostCard({ id, url, title, username, handleLike }) {
   const togglePop = () => {
     setShow(!show);
   };
+
   async function handleDelete(postId) {
     try {
       await NostalgiaApi.deletePost(postId);
@@ -63,7 +66,7 @@ export default function PostCard({ id, url, title, username, handleLike }) {
 
           {username !== currentUser?.username ? (
             <button onClick={handleLike}>
-              {likedIds.has(id) ? (
+              {likedIds.has(id) && currentUser ? (
                 <i class="fas fa-heart"></i>
               ) : (
                 <i class="far fa-heart"></i>
