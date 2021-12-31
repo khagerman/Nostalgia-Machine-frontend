@@ -5,20 +5,16 @@ const BASE_URL = process.env.REACT_APP_BASE_URL || "http://localhost:3001";
 /** API Class.
  *
  * Static class tying together methods used to get/send to to the API.
- * There shouldn't be any frontend-specific stuff here, and there shouldn't
- * be any API-aware stuff elsewhere in the frontend.
+
  *
  */
 
 class NostalgiaApi {
-  // the token for interactive with the API will be stored here.
   static token;
 
   static async request(endpoint, data = {}, method = "get") {
     console.debug("API Call:", endpoint, data, method);
 
-    //there are multiple ways to pass an authorization token, this is how you pass it in the header.
-    //this has been provided to show you another way to pass the token. you are only expected to read this code for this project.
     const url = `${BASE_URL}/${endpoint}`;
     const headers = { Authorization: `Bearer ${NostalgiaApi.token}` };
     const params = method === "get" ? data : {};
@@ -31,7 +27,7 @@ class NostalgiaApi {
       throw Array.isArray(message) ? message : [message];
     }
   }
-  // todo missing getall routes???, data
+
   // Individual API routes
   ///user routes
   static async getUser(username) {
@@ -76,6 +72,7 @@ class NostalgiaApi {
     let res = await this.request(`posts/${id}`, {}, "delete");
     return res;
   }
+  // comment routes
   static async postComment(id, data) {
     let res = await this.request(`posts/${id}/comments`, data, "post");
     return res.comment;
@@ -96,10 +93,7 @@ class NostalgiaApi {
     );
     return res.comment;
   }
-  // static async postPost(data) {
-  //   let res = await this.request(`posts/`, data, "post");
-  //   return res.post;
-  // }
+  // like/unlike routes
   static async like(username, id) {
     await this.request(`users/${username}/favorite/${id}`, {}, "post");
     let res = await this.request(`users/${username}`);
@@ -115,9 +109,5 @@ class NostalgiaApi {
     return res;
   }
 }
-
-// for now, put token ("testuser" / "password" on class)
-// NostalgiaApi.token =
-//   "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InRlc3R1c2VyIiwiaWF0IjoxNjM4NDg3MjY0fQ.hZ6aUMBcrVhFHtk9updl1XMVfk57JQoay4msPCVcS4M";
 
 export default NostalgiaApi;

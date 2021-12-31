@@ -1,25 +1,32 @@
 import React, { useState, useContext } from "react";
-import Alert from "../common/Alert";
+
 import NostalgiaApi from "../api";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import UserContext from "../auth/UserContext";
+import { Alert, Button } from "@mui/material";
 // import {} from "react-dom/cjs/react-dom.development";
+
+/**
+   *New Comment form for post
+
+   *Rendered on post detail page
+
+   *visible only to those logged in
+
+   
+   */
+
 export default function NewComment({ postId, onUpdate }) {
   const [formData, setFormData] = useState({
     text: "",
   });
   const [formErrors, setFormErrors] = useState(false);
   const { currentUser } = useContext(UserContext);
-  const notify = () =>
-    toast.warn("Please login to comment!", {
-      position: toast.POSITION.TOP_CENTER,
-    });
+
   async function handleSubmit(e) {
     e.preventDefault();
-    if (currentUser) {
-      notify();
-    }
+
     try {
       let result = await NostalgiaApi.postComment(postId, formData);
       onUpdate();
@@ -28,6 +35,7 @@ export default function NewComment({ postId, onUpdate }) {
       });
       setFormErrors(false);
     } catch (errors) {
+      // set errors to true so toast popup shows up
       setFormErrors(true);
     }
   }
@@ -42,9 +50,10 @@ export default function NewComment({ postId, onUpdate }) {
   };
   return (
     <div>
-      <ToastContainer autoClose={2000} hideProgressBar={true} />
-      <p>{formErrors ? <p> {"Comment cannot be blank"} </p> : null}</p>
-      <form className="form-inline" onSubmit={handleSubmit}>
+      {formErrors ? (
+        <Alert severity="warning">Comment cannot be blank!</Alert>
+      ) : null}
+      <form onSubmit={handleSubmit}>
         <label htmlFor="text">Comment</label>
         <input
           type="text"
@@ -53,9 +62,9 @@ export default function NewComment({ postId, onUpdate }) {
           value={formData.text}
           onChange={handleChange}
         />
-        <button type="submit" onSubmit={handleSubmit}>
+        <Button type="submit" onSubmit={handleSubmit}>
           Add
-        </button>
+        </Button>
       </form>
     </div>
   );

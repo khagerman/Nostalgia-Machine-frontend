@@ -6,7 +6,7 @@ import "./LoadingSpinner.css";
 function LoadingSpinner() {
   return (
     <div className="LoadingSpinner">
-      <h2 class="fas fa-spinner"></h2>
+      <h2 className="fas fa-spinner"></h2>
     </div>
   );
 }

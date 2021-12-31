@@ -4,16 +4,10 @@ import NostalgiaApi from "../api";
 import { useHistory } from "react-router-dom";
 import UserContext from "../auth/UserContext";
 import { ToastContainer, toast } from "react-toastify";
-import {
-  Container,
-  Card,
-  FormGroup,
-  TextField,
-  Button,
-  Alert,
-} from "@mui/material";
+import { Container, Card, FormGroup, TextField, Button } from "@mui/material";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import { object, string } from "yup";
+import "./PostDetail.css";
 export default function EditPost({
   id,
   toggle,
@@ -30,9 +24,6 @@ export default function EditPost({
 */
 
   //shows or hides edit form
-  let handleClick = () => {
-    toggle();
-  };
 
   let username = currentUser?.username;
 
@@ -59,10 +50,7 @@ export default function EditPost({
     title: string().required().min(1).max(100),
   });
   return (
-    <Card sx={{ maxWidth: 345 }}>
-      <span className="close" onClick={handleClick}>
-        &times;
-      </span>
+    <Card sx={{ maxWidth: 345 }} className="Modal">
       <Formik
         initialValues={{
           url: url,
@@ -76,7 +64,6 @@ export default function EditPost({
         {({ errors, touched }) => (
           <Form>
             <FormGroup>
-              <label>Image URL</label>
               <Field
                 name="url"
                 className="form-control"
@@ -84,19 +71,19 @@ export default function EditPost({
                 as={TextField}
               />
               {errors.url && touched.url ? (
-                <Alert severity={"error"}>{errors.url}</Alert>
+                <div style={{ color: "red" }}>{errors.url}</div>
               ) : null}
             </FormGroup>
             <FormGroup>
-              <label>Post Text</label>
               <Field
                 name="title"
                 id="title"
                 className="form-control"
                 as={TextField}
+                label="Post Text"
               />
               {errors.title && touched.title ? (
-                <Alert severity={"error"}>{errors.title}</Alert>
+                <div style={{ color: "red" }}>{errors.title}</div>
               ) : null}
             </FormGroup>
             <Button variant="contained" type="submit" onSubmit={handleSubmit}>

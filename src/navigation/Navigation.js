@@ -1,9 +1,9 @@
 import React, { useContext } from "react";
 import { Link, NavLink } from "react-router-dom";
-import App from "../App";
+
 import UserContext from "../auth/UserContext";
 import logogif from "../imgs/logogif.gif";
-import "./Navigation.css";
+
 import {
   AppBar,
   Button,
@@ -11,7 +11,6 @@ import {
   MenuItem,
   Box,
   Typography,
-  ToolTip,
   Toolbar,
   Container,
   Link as MULink,
@@ -23,7 +22,7 @@ import {
  *
  * Rendered by App.
  */
-
+//todo add mobile view
 function Navigation({ logout }) {
   const { currentUser } = useContext(UserContext);
   const [anchorEl, setAnchorEl] = React.useState(null);
@@ -51,7 +50,7 @@ function Navigation({ logout }) {
   const handleClose = () => {
     setAnchorEl(null);
   };
-  // console.debug("Navigation", "currentUser=", currentUser);
+
   function decadeDropDown() {
     return (
       <>
@@ -172,7 +171,7 @@ function Navigation({ logout }) {
       <AppBar position="static">
         <Container maxWidth="xl">
           <Toolbar disableGutters>
-            <div noWrap sx={{ display: { s: "none", md: "flex" } }}>
+            <div sx={{ display: "flex" }}>
               <Link to="/">
                 <img src={logogif}></img>
               </Link>
@@ -209,14 +208,14 @@ function Navigation({ logout }) {
                 </MenuItem>
               </Menu>
             </Box>
-            <Typography
+            {/* <Typography
               variant="h6"
               noWrap
               component="div"
               sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}
             >
               Nostalgia Machine
-            </Typography>
+            </Typography> */}
             <Box sx={{ flexGrow: 1, display: { md: "flex" } }}>
               {decadeDropDown()}
 

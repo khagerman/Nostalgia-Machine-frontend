@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import { useHistory, Link } from "react-router-dom";
-import { Formik, Form, Field, ErrorMessage } from "formik";
+import { Formik, Form, Field } from "formik";
 import { object, string } from "yup";
-import { TextField, FormGroup, Container, Button } from "@mui/material";
-import { ToastContainer, toast } from "react-toastify";
+import { TextField, FormGroup, Container, Button, Alert } from "@mui/material";
+import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 /** Login form.
  *
@@ -11,7 +11,7 @@ import "react-toastify/dist/ReactToastify.css";
  * On submission:
  * - calls login function prop
  * - redirects to / route
- *
+ *if error alerts user
  * Routes -> LoginForm
  * Routed as /login
  */
@@ -26,9 +26,13 @@ function LoginForm({ login }) {
   async function handleSubmit(values) {
     let result = await login(values);
     if (result.success) {
+      //successful go to home page else alert user
       history.push("/");
     } else {
-      alert(result.errors);
+      console.log(result.errors);
+      toast.error(result.errors[0], {
+        position: toast.POSITION.TOP_CENTER,
+      });
     }
   }
   return (
@@ -46,7 +50,6 @@ function LoginForm({ login }) {
       >
         {({ errors, touched }) => (
           <Container maxWidth="xs">
-            <ToastContainer autoClose={2000} hideProgressBar={true} />
             <Form>
               <FormGroup>
                 <Field
@@ -56,7 +59,7 @@ function LoginForm({ login }) {
                   as={TextField}
                 />
                 {errors.username && touched.username ? (
-                  <div style={{ color: "red" }}>{errors.username}</div>
+                  <Alert severity="error">{errors.username}</Alert>
                 ) : null}
 
                 <Field
@@ -67,10 +70,11 @@ function LoginForm({ login }) {
                   label="Password"
                 />
                 {errors.password && touched.password ? (
-                  <div style={{ color: "red" }}>{errors.password}</div>
+                  <Alert severity={"error"}>{errors.password}</Alert>
                 ) : null}
               </FormGroup>
-              <Button variant="contained" type="submit">
+              <br></br>
+              <Button variant="contained" color="secondary" type="submit">
                 Login
               </Button>
             </Form>

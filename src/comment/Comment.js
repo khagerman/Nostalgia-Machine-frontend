@@ -1,7 +1,16 @@
 import React, { useContext, useState } from "react";
-import NostalgiaApi from "../api";
+
 import UserContext from "../auth/UserContext";
-import Alert from "../common/Alert";
+
+import {
+  IconButton,
+  ListItem,
+  ListItemText,
+  Typography,
+  Divider,
+  ListItemAvatar,
+  Avatar,
+} from "@mui/material";
 export default function Comment({
   postId,
   username,
@@ -13,11 +22,21 @@ export default function Comment({
   const { currentUser } = useContext(UserContext);
   const [comment, setComment] = useState(text);
   const [toggle, setToggle] = useState(false);
-  const [formErrors, setFormErrors] = useState([]);
+  const [formErrors, setFormErrors] = useState(false);
   const handleChange = (event) => {
     setComment(event.target.value);
   };
+  /**
+   *Comment component for post
 
+   *Rendered on post detail page
+
+   *shows edit of delete button if comment belongs to user
+
+   *renders new comment form if user logged in
+   */
+
+  //  submit new comment, shows error if blank
   async function handleSubmit(evt) {
     evt.preventDefault();
 
@@ -31,12 +50,11 @@ export default function Comment({
       );
       setToggle(false);
     } catch (errors) {
-      setFormErrors({ success: false, error: "comment cannot be blank!" });
-      console.log(formErrors);
+      setFormErrors(true);
     }
   }
   let edit = (
-    <form className="form-inline" onSubmit={handleSubmit}>
+    <form onSubmit={handleSubmit}>
       <label htmlFor="text">Comment</label>
       <input
         type="text"
@@ -50,32 +68,55 @@ export default function Comment({
       </button>
     </form>
   );
-  // TODO ADDING TOGGLE TO SHOW INPUT OR NOT
+
+  function stringAvatar(name) {
+    return {
+      sx: {
+        bgcolor: Math.floor(Math.random() * 16777215).toString(16),
+      },
+      children: `${name[0]}`,
+    };
+  }
   return (
-    <div>
-      <ul>
-        <li>{username}</li>
-        {toggle ? edit : <li>{text}</li>}
-      </ul>
-      {username === currentUser?.username ? (
-        <>
-          <button
-            onClick={() => {
-              setToggle(true);
-            }}
-          >
-            <i class="fas fa-edit"></i>
-          </button>
-          <button onClick={() => handleDelete(postId, commentId)}>
-            <i class="fas fa-trash-alt"></i>
-          </button>
-          {formErrors.length ? (
-            <Alert type="danger" messages={formErrors} />
-          ) : null}
-        </>
-      ) : (
-        ""
-      )}
-    </div>
+    <>
+      <ListItem>
+        <ListItemAvatar>
+          <Avatar {...stringAvatar(username)} />
+        </ListItemAvatar>
+
+        <ListItemText
+          primary={toggle ? edit : text}
+          secondary={
+            <React.Fragment>
+              <Typography
+                sx={{ display: "inline" }}
+                component="span"
+                variant="body2"
+                color="text.primary"
+              >
+                {username}
+              </Typography>
+              {username === currentUser?.username ? (
+                <span>
+                  <IconButton
+                    onClick={() => {
+                      setToggle(true);
+                    }}
+                  >
+                    <i className="fas fa-edit"></i>
+                  </IconButton>
+                  <IconButton onClick={() => handleDelete(postId, commentId)}>
+                    <span className="fas fa-trash-alt"></span>
+                  </IconButton>
+                </span>
+              ) : (
+                ""
+              )}
+            </React.Fragment>
+          }
+        />
+      </ListItem>
+      <Divider variant="inset" component="li" />
+    </>
   );
 }

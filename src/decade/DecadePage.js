@@ -5,6 +5,7 @@ import PostCard from "../post/PostCard";
 import UserContext from "../auth/UserContext";
 import LoadingSpinner from "../common/LoadingSpinner";
 import { ToastContainer, toast } from "react-toastify";
+import { Grid, Box, Typography } from "@mui/material";
 import "react-toastify/dist/ReactToastify.css";
 function DecadePage() {
   const { decadeId } = useParams();
@@ -20,8 +21,15 @@ function DecadePage() {
     // like,
     // unlike,
   } = useContext(UserContext);
+  /**
+   *Decade page
 
-  // const [likedIds, setLikedIds] = useState(new Set([]));
+   *On mount, loads posts associated with decade from API (decadeId is gotten from params)
+  *updates when new post added or page changes
+   *
+
+   *maps through posts and renders them in PostCard component
+   */
   useEffect(() => {
     async function getData() {
       let data = await NostalgiaApi.getDecade(decadeId);
@@ -29,12 +37,10 @@ function DecadePage() {
     }
     getData();
   }, [decadeId, currentUser]);
-  console.log(decade);
+
   let posts = decade.posts;
-  const notify = () =>
-    toast.warn("Please login to like or save posts!", {
-      position: toast.POSITION.TOP_CENTER,
-    });
+
+  // unlike post logic
   async function unlike(id) {
     try {
       await NostalgiaApi.unlike(currentUser.username, id);
@@ -43,7 +49,7 @@ function DecadePage() {
       console.log(e);
     }
   }
-
+  // like post logic
   async function like(id) {
     try {
       await NostalgiaApi.like(currentUser.username, id);
@@ -51,10 +57,13 @@ function DecadePage() {
       console.log(e);
     }
   }
-
+  //logic when user clicks on heart/like button. checks if post already liked by user,
+  // if so changes to empty heart and uses unlike function to remove from api data
   function handleLike(id) {
     if (!currentUser) {
-      notify();
+      toast.warn("Please login to like or save posts!", {
+        position: toast.POSITION.TOP_CENTER,
+      });
     }
     if (likedIds.has(id)) {
       unlike(id);
@@ -66,22 +75,31 @@ function DecadePage() {
   }
   return (
     <>
-      <h1>{decade.name}</h1>
-      <ToastContainer autoClose={5000} hideProgressBar={true} />
-      {posts ? (
-        posts.map((p) => (
-          <PostCard
-            id={p.id}
-            username={p.username}
-            key={p.id}
-            title={p.title}
-            url={p.url}
-            handleLike={() => handleLike(p.id)}
-          />
-        ))
-      ) : (
-        <LoadingSpinner />
-      )}
+      <Typography variant="h1"> {decade.name}</Typography>
+      <Box sx={{ m: 3 }}>
+        <Grid
+          container
+          spacing={{ xs: 2, md: 3 }}
+          columns={{ xs: 4, sm: 8, md: 12 }}
+        >
+          {posts ? (
+            posts.map((p) => (
+              <Grid item xs={2} sm={4} md={4} id={p.id}>
+                <PostCard
+                  id={p.id}
+                  username={p.username}
+                  key={p.id}
+                  title={p.title}
+                  url={p.url}
+                  handleLike={() => handleLike(p.id)}
+                />
+              </Grid>
+            ))
+          ) : (
+            <LoadingSpinner />
+          )}
+        </Grid>
+      </Box>
     </>
   );
 }

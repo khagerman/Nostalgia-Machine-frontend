@@ -1,40 +1,48 @@
 import React, { useState, useEffect, useContext } from "react";
-import { useParams, useHistory } from "react-router-dom";
+import { useParams, useHistory, Link } from "react-router-dom";
 import NostalgiaApi from "../api";
 import Comment from "../comment/Comment";
 import NewComment from "../comment/NewComment";
 import LoadingSpinner from "../common/LoadingSpinner";
 import UserContext from "../auth/UserContext";
-import PopUpEditPost from "./EditPost";
+import EditPostDetail from "./EditPostDetail";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import { Alert, Modal, Box, IconButton, List } from "@mui/material";
+import CommentSection from "../comment/CommentSection";
 function PostDetail() {
   const { id } = useParams();
-  //TODO taniya is this logic okay? to send another api request to update?
+
   const [post, setPost] = useState([]);
   const history = useHistory();
-  const {
-    currentUser,
-    likedIds,
-    setLikedIds,
-    setCurrentUser,
-    like,
-    unlike,
-    handleLike,
-  } = useContext(UserContext);
-  const [show, setShow] = useState(false);
+  const { currentUser, likedIds, setCurrentUser, handleLike } =
+    useContext(UserContext);
+  const [open, setOpen] = useState(false);
+  const handleOpen = () => setOpen(true);
+  const handleClose = () => setOpen(false);
+  /**
+   *PostDetail component
+*shows detail of post
+*shows post title, username,  picture, and comments
 
-  const togglePop = () => {
-    setShow(!show);
-  };
+*shows edit button and delete if posted by currentUser
+renders popup of edit form if clicked on
+shows like button if not posted by currentUser
+*/
+
+  //get post data on load
   useEffect(() => {
     async function getData() {
       let data = await NostalgiaApi.getPost(id);
       setPost(data);
     }
     getData();
-  }, [id, show]);
+  }, [id, open]);
   const comments = post.comments;
+  // show loading spinner if content not loaded
   if (!post || !comments) return <LoadingSpinner />;
 
+  //delete post when clicked on  and current user
   async function handleDeletePost(postId, username) {
     try {
       await NostalgiaApi.deletePost(postId);
@@ -46,6 +54,8 @@ function PostDetail() {
       return { success: false, errors };
     }
   }
+
+  // update data when new comment added
   const handleNewPost = () => {
     async function getData() {
       let data = await NostalgiaApi.getPost(id);
@@ -53,7 +63,7 @@ function PostDetail() {
     }
     getData();
   };
-
+  //logic to edit comment, only visable if user created comment
   async function handleEdit(postId, newData, id) {
     try {
       await NostalgiaApi.patchComment(postId, newData, id);
@@ -65,6 +75,8 @@ function PostDetail() {
       return { success: false, errors };
     }
   }
+
+  //logic to delete comment, only visable if user created comment
   async function handleDelete(postId, id) {
     try {
       await NostalgiaApi.deleteComment(postId, id);
@@ -78,62 +90,48 @@ function PostDetail() {
   }
   return (
     <>
-      <h1>Post</h1>
-      {!show ? (
-        <div>
-          <img src={post.url}></img>
-          <h3>{post.title}</h3>
-          <h2>username:{post.username}</h2>
-        </div>
-      ) : (
-        <PopUpEditPost
-          id={id}
-          toggle={togglePop}
-          url={post.url}
-          title={post.title}
-        />
-      )}
+      <h1>{post.title}</h1>
+
+      <Modal open={open} onClose={handleClose}>
+        <Box className="Modal">
+          <EditPostDetail id={id} url={post.url} title={post.title} />
+        </Box>
+      </Modal>
+
+      <div>
+        <img src={post.url}></img>
+
+        <h2>username:{post.username}</h2>
+      </div>
       <div>
         {post?.username !== currentUser?.username ? (
-          <button onClick={() => handleLike(id, post.username)}>
+          <IconButton onClick={() => handleLike(id, post.username)}>
             {likedIds.has(id) ? (
-              <i class="fas fa-heart"></i>
+              <i className="fas fa-heart"></i>
             ) : (
-              <i class="far fa-heart"></i>
+              <i className="far fa-heart"></i>
             )}
-          </button>
+          </IconButton>
         ) : (
           <>
-            <button onClick={togglePop}>
-              Edit
-              <span class="fas fa-edit"></span>
-            </button>
-            <button onClick={() => handleDeletePost(id, currentUser.username)}>
-              Delete
-              <i class="fas fa-trash-alt"></i>
-            </button>
+            <IconButton onClick={handleOpen}>
+              <i className="fas fa-edit"></i>
+            </IconButton>
+            <IconButton
+              onClick={() => handleDeletePost(id, currentUser.username)}
+            >
+              <i className="fas fa-trash-alt"></i>
+            </IconButton>
           </>
         )}
       </div>
-      <h3>Comments</h3>
-      <NewComment postId={id} onUpdate={() => handleNewPost()} />
-      <div>
-        {comments.length !== 0 ? (
-          comments.map((c) => (
-            <Comment
-              text={c.text}
-              key={c.id}
-              commentId={c.id}
-              postId={id}
-              username={c.username}
-              handleDelete={() => handleDelete(id, c.id)}
-              handleEdit={handleEdit}
-            />
-          ))
-        ) : (
-          <h2>no comments yet!</h2>
-        )}
-      </div>
+      <CommentSection
+        id={id}
+        comments={comments}
+        handleNewPost={handleNewPost}
+        handleEdit={handleEdit}
+        handleDelete={handleDelete}
+      />
     </>
   );
 }

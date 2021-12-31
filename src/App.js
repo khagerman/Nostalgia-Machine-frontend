@@ -9,6 +9,7 @@ import useLocalStorage from "./hooks/useLocalStorage";
 import jwt from "jsonwebtoken";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+
 function App() {
   const [currentUser, setCurrentUser] = useState(null);
   const [likedIds, setLikedIds] = useState(new Set([]));
@@ -55,7 +56,7 @@ function App() {
         return { success: false, errors };
       }
     }
-    console.log("this ran!");
+
     if (currentUser) {
       getUserLikes(currentUser.username);
     }
@@ -116,7 +117,6 @@ function App() {
       position: toast.POSITION.TOP_CENTER,
     });
   function handleLike(id) {
-    console.log("this is working");
     if (!currentUser) {
       notify();
     } else if (likedIds.has(id)) {
@@ -143,6 +143,7 @@ function App() {
         }}
       >
         <div className="App">
+          <ToastContainer autoClose={4000} hideProgressBar={true} />
           <Navigation logout={logout} />
           <Routes login={login} signup={signup} />
         </div>

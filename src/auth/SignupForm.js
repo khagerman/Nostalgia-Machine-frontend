@@ -1,17 +1,19 @@
 import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
-import Alert from "../common/Alert";
-import { Formik, Form, Field, ErrorMessage } from "formik";
+
+import { Formik, Form, Field } from "formik";
 import { object, string } from "yup";
-import { TextField, FormGroup, Container, Button } from "@mui/material";
+import { TextField, FormGroup, Container, Button, Alert } from "@mui/material";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 /** Signup form.
  *
  * Shows form and manages update to state on changes.
  * On submission:
  * - calls signup function prop
- * - redirects to /companies route
- *
- * Routes -> SignupForm -> Alert
+ * - redirects to / route
+ *if error alerts user
+
  * Routed as /signup
  */
 
@@ -26,13 +28,15 @@ function SignupForm({ signup }) {
     if (result.success) {
       history.push("/");
     } else {
-      alert(result.errors);
+      console.log(result.errors);
+      toast.error(result.errors[0], {
+        position: toast.POSITION.TOP_CENTER,
+      });
     }
   }
   return (
     <div>
       <h1>Signup</h1>
-
       <Formik
         initialValues={{
           username: "",
@@ -54,7 +58,7 @@ function SignupForm({ signup }) {
                   as={TextField}
                 />
                 {errors.username && touched.username ? (
-                  <div style={{ color: "red" }}>{errors.username}</div>
+                  <Alert severity={"error"}>{errors.username}</Alert>
                 ) : null}
 
                 <Field
@@ -65,11 +69,12 @@ function SignupForm({ signup }) {
                   label="Password"
                 />
                 {errors.password && touched.password ? (
-                  <div style={{ color: "red" }}>{errors.password}</div>
+                  <Alert severity={"error"}>{errors.password}</Alert>
                 ) : null}
               </FormGroup>
-              <Button variant="contained" type="submit">
-                Login
+              <br></br>
+              <Button variant="contained" color="secondary" type="submit">
+                Signup
               </Button>
             </Form>
           </Container>
