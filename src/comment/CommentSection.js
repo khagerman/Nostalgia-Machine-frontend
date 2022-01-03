@@ -1,15 +1,20 @@
 import React, { useState, useEffect, useContext } from "react";
 import { useParams, useHistory, Link } from "react-router-dom";
-import NostalgiaApi from "../api";
+
 import Comment from "./Comment";
 import NewComment from "./NewComment";
 import LoadingSpinner from "../common/LoadingSpinner";
 import UserContext from "../auth/UserContext";
-import EditPostDetail from "../post/EditPostDetail";
-import { ToastContainer, toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
-import { Alert, Modal, Box, IconButton, List } from "@mui/material";
 
+import "react-toastify/dist/ReactToastify.css";
+import { Alert, Modal, Box, IconButton, List, Container } from "@mui/material";
+
+/**
+   *CommentSection component for post
+
+   *Rendered on post detail page
+  *renders list of comments for post and new comment form 
+   */
 function CommentSection({
   id,
   comments,
@@ -19,8 +24,9 @@ function CommentSection({
 }) {
   const { currentUser } = useContext(UserContext);
   return (
-    <>
+    <Container>
       <h3>Comments</h3>
+      {/* if logged in user show comment form else show warning to log in */}
       {currentUser ? (
         <NewComment postId={id} onUpdate={() => handleNewPost()} />
       ) : (
@@ -42,10 +48,10 @@ function CommentSection({
             />
           ))
         ) : (
-          <h2>no comments yet!</h2>
+          <h2>No comments yet!</h2>
         )}
       </List>
-    </>
+    </Container>
   );
 }
 

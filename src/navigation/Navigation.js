@@ -1,8 +1,8 @@
 import React, { useContext } from "react";
 import { Link, NavLink } from "react-router-dom";
-
+import "./Navigation.css";
 import UserContext from "../auth/UserContext";
-import logogif from "../imgs/logogif.gif";
+import logo from "../imgs/logo.gif";
 
 import {
   AppBar,
@@ -168,12 +168,12 @@ function Navigation({ logout }) {
 
   return (
     <nav>
-      <AppBar position="static">
+      <AppBar position="static" className="AppBar">
         <Container maxWidth="xl">
           <Toolbar disableGutters>
             <div sx={{ display: "flex" }}>
               <Link to="/">
-                <img src={logogif}></img>
+                <img src={logo}></img>
               </Link>
             </div>
             {/* <Typography

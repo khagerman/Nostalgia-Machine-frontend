@@ -6,9 +6,9 @@ import NewComment from "../comment/NewComment";
 import LoadingSpinner from "../common/LoadingSpinner";
 import UserContext from "../auth/UserContext";
 import EditPostDetail from "./EditPostDetail";
-import { ToastContainer, toast } from "react-toastify";
+
 import "react-toastify/dist/ReactToastify.css";
-import { Alert, Modal, Box, IconButton, List } from "@mui/material";
+import { Modal, Box, IconButton } from "@mui/material";
 import CommentSection from "../comment/CommentSection";
 function PostDetail() {
   const { id } = useParams();
@@ -42,7 +42,7 @@ shows like button if not posted by currentUser
   // show loading spinner if content not loaded
   if (!post || !comments) return <LoadingSpinner />;
 
-  //delete post when clicked on  and current user
+  //delete post when clicked on and current user
   async function handleDeletePost(postId, username) {
     try {
       await NostalgiaApi.deletePost(postId);
@@ -101,7 +101,7 @@ shows like button if not posted by currentUser
       <div>
         <img src={post.url}></img>
 
-        <h2>username:{post.username}</h2>
+        <h2>Posted by: {post.username}</h2>
       </div>
       <div>
         {post?.username !== currentUser?.username ? (

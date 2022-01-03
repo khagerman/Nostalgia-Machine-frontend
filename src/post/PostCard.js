@@ -65,9 +65,13 @@ shows like button if not posted by currentUser
           updatePost={updatePost}
         />
       ) : (
-        <Card sx={{ maxWidth: 345 }}>
-          <CardActionArea component={Link} to={`/post/${id}`}>
-            <CardMedia component="img" height="200" image={url} alt={title} />
+        <Card>
+          <CardActionArea
+            sx={{ maxWidth: 345 }}
+            component={Link}
+            to={`/post/${id}`}
+          >
+            <CardMedia component="img" height="300" image={url} alt={title} />
             <CardContent>
               <Typography gutterBottom variant="h5" component="div">
                 {title}

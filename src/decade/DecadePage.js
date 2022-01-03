@@ -1,35 +1,28 @@
-import React, { useState, useEffect, useContext, useCallback } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { useParams } from "react-router-dom";
 import NostalgiaApi from "../api";
 import PostCard from "../post/PostCard";
 import UserContext from "../auth/UserContext";
 import LoadingSpinner from "../common/LoadingSpinner";
-import { ToastContainer, toast } from "react-toastify";
+import { toast } from "react-toastify";
 import { Grid, Box, Typography } from "@mui/material";
 import "react-toastify/dist/ReactToastify.css";
 function DecadePage() {
   const { decadeId } = useParams();
 
   const [decade, setDecade] = useState([]);
-  const {
-    currentUser,
-    likedIds,
-    setLikedIds,
-    likes,
-    setLikes,
-    // handleLike,
-    // like,
-    // unlike,
-  } = useContext(UserContext);
+  const { currentUser, likedIds, setLikedIds } = useContext(UserContext);
   /**
    *Decade page
 
-   *On mount, loads posts associated with decade from API (decadeId is gotten from params)
+   *On mount, loads posts associated with decade from API (decadeId is  from params)
   *updates when new post added or page changes
    *
 
    *maps through posts and renders them in PostCard component
    */
+
+  //get data on page load, when decade changes, and when user posts/edits post
   useEffect(() => {
     async function getData() {
       let data = await NostalgiaApi.getDecade(decadeId);
@@ -75,8 +68,11 @@ function DecadePage() {
   }
   return (
     <>
-      <Typography variant="h1"> {decade.name}</Typography>
+      <Box sx={{ m: 2 }}>
+        <Typography variant="h2"> {decade.name}</Typography>
+      </Box>
       <Box sx={{ m: 3 }}>
+        {/* mui grid logic */}
         <Grid
           container
           spacing={{ xs: 2, md: 3 }}
@@ -84,7 +80,7 @@ function DecadePage() {
         >
           {posts ? (
             posts.map((p) => (
-              <Grid item xs={2} sm={4} md={4} id={p.id}>
+              <Grid item xs={2} sm={4} md={4} key={p.id}>
                 <PostCard
                   id={p.id}
                   username={p.username}

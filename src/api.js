@@ -10,6 +10,7 @@ const BASE_URL = process.env.REACT_APP_BASE_URL || "http://localhost:3001";
  */
 
 class NostalgiaApi {
+  //token stored here
   static token;
 
   static async request(endpoint, data = {}, method = "get") {

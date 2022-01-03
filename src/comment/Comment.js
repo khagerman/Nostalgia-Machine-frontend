@@ -8,8 +8,8 @@ import {
   ListItemText,
   Typography,
   Divider,
-  ListItemAvatar,
-  Avatar,
+  // ListItemAvatar,
+  // Avatar,
 } from "@mui/material";
 export default function Comment({
   postId,
@@ -29,7 +29,7 @@ export default function Comment({
   /**
    *Comment component for post
 
-   *Rendered on post detail page
+   *Rendered on CommentSection
 
    *shows edit of delete button if comment belongs to user
 
@@ -48,6 +48,7 @@ export default function Comment({
         },
         commentId
       );
+      //hide form if edit successful
       setToggle(false);
     } catch (errors) {
       setFormErrors(true);
@@ -55,7 +56,7 @@ export default function Comment({
   }
   let edit = (
     <form onSubmit={handleSubmit}>
-      <label htmlFor="text">Comment</label>
+      <label htmlFor="text"> Add a Comment</label>
       <input
         type="text"
         name="text"
@@ -69,25 +70,26 @@ export default function Comment({
     </form>
   );
 
-  function stringAvatar(name) {
-    return {
-      sx: {
-        bgcolor: Math.floor(Math.random() * 16777215).toString(16),
-      },
-      children: `${name[0]}`,
-    };
-  }
+  // function stringAvatar(name) {
+  //   return {
+  //     sx: {
+  //       bgcolor: `#${Math.floor(Math.random() * 16777215).toString(16)}`,
+  //     },
+  //     children: `${name[0]}`,
+  //   };
+  // }
   return (
     <>
       <ListItem>
-        <ListItemAvatar>
+        {/* <ListItemAvatar>
           <Avatar {...stringAvatar(username)} />
-        </ListItemAvatar>
+        </ListItemAvatar> */}
 
         <ListItemText
+          // if editing show form else show text
           primary={toggle ? edit : text}
           secondary={
-            <React.Fragment>
+            <>
               <Typography
                 sx={{ display: "inline" }}
                 component="span"
@@ -96,6 +98,8 @@ export default function Comment({
               >
                 {username}
               </Typography>
+
+              {/* if comment is by user allow user to edit/delete */}
               {username === currentUser?.username ? (
                 <span>
                   <IconButton
@@ -105,6 +109,7 @@ export default function Comment({
                   >
                     <i className="fas fa-edit"></i>
                   </IconButton>
+                  {/* delete post */}
                   <IconButton onClick={() => handleDelete(postId, commentId)}>
                     <span className="fas fa-trash-alt"></span>
                   </IconButton>
@@ -112,7 +117,7 @@ export default function Comment({
               ) : (
                 ""
               )}
-            </React.Fragment>
+            </>
           }
         />
       </ListItem>

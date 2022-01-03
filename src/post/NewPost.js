@@ -124,7 +124,12 @@ function NewPost() {
                 </Field>
               </FormGroup>
 
-              <Button variant="contained" type="submit" onSubmit={handleSubmit}>
+              <Button
+                color="secondary"
+                variant="contained"
+                type="submit"
+                onSubmit={handleSubmit}
+              >
                 Submit
               </Button>
             </Form>

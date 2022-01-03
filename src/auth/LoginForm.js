@@ -23,6 +23,7 @@ function LoginForm({ login }) {
     username: string().required().min(3).max(15),
     password: string().required().min(5).max(20),
   });
+  //send data to api
   async function handleSubmit(values) {
     let result = await login(values);
     if (result.success) {
@@ -48,6 +49,7 @@ function LoginForm({ login }) {
           handleSubmit(values);
         }}
       >
+        {/* //alerts if user has clicked and not typed anything and if what typed does not meet schema */}
         {({ errors, touched }) => (
           <Container maxWidth="xs">
             <Form>

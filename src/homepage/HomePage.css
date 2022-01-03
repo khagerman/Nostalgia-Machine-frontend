@@ -1,0 +1,11 @@
+.HomePage {
+  height: calc(100vh - 150px);
+  display: flex;
+  align-items: center;
+  margin: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: "12px";
+  box-shadow: 1;
+}
