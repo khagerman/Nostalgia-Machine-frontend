@@ -1,10 +1,11 @@
-import React, { useState } from "react";
+import React from "react";
 import { useHistory, Link } from "react-router-dom";
 import { Formik, Form, Field } from "formik";
 import { object, string } from "yup";
 import { TextField, FormGroup, Container, Button, Alert } from "@mui/material";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { Box } from "@mui/system";
 /** Login form.
  *
  * Shows form and manages update to state on changes.
@@ -30,7 +31,7 @@ function LoginForm({ login }) {
       //successful go to home page else alert user
       history.push("/");
     } else {
-      console.log(result.errors);
+      console.error(result.errors);
       toast.error(result.errors[0], {
         position: toast.POSITION.TOP_CENTER,
       });
@@ -60,10 +61,13 @@ function LoginForm({ login }) {
                   label="Username"
                   as={TextField}
                 />
+
                 {errors.username && touched.username ? (
                   <Alert severity="error">{errors.username}</Alert>
                 ) : null}
-
+              </FormGroup>
+              <br></br>
+              <FormGroup>
                 <Field
                   id="password"
                   as={TextField}

@@ -6,7 +6,8 @@ import UserContext from "../auth/UserContext";
 import LoadingSpinner from "../common/LoadingSpinner";
 import { toast } from "react-toastify";
 import { Grid, Box, Typography } from "@mui/material";
-import "react-toastify/dist/ReactToastify.css";
+import "./DecadePage.css";
+
 function DecadePage() {
   const { decadeId } = useParams();
 
@@ -37,9 +38,8 @@ function DecadePage() {
   async function unlike(id) {
     try {
       await NostalgiaApi.unlike(currentUser.username, id);
-      console.log("unliked");
     } catch (e) {
-      console.log(e);
+      console.error(e);
     }
   }
   // like post logic
@@ -47,7 +47,7 @@ function DecadePage() {
     try {
       await NostalgiaApi.like(currentUser.username, id);
     } catch (e) {
-      console.log(e);
+      console.error(e);
     }
   }
   //logic when user clicks on heart/like button. checks if post already liked by user,
@@ -67,9 +67,9 @@ function DecadePage() {
     }
   }
   return (
-    <>
+    <div className="DecadePage">
       <Box sx={{ m: 2 }}>
-        <Typography variant="h2"> {decade.name}</Typography>
+        <h2> {decade.name}</h2>
       </Box>
       <Box sx={{ m: 3 }}>
         {/* mui grid logic */}
@@ -96,7 +96,7 @@ function DecadePage() {
           )}
         </Grid>
       </Box>
-    </>
+    </div>
   );
 }
 export default DecadePage;

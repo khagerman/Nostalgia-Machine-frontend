@@ -12,7 +12,8 @@ import "react-toastify/dist/ReactToastify.css";
 
 function PrivateRoute({ exact, path, children }) {
   const { currentUser } = useContext(UserContext);
-  //todo alerting twice
+  //if user is not logged in and tries to go to private route will alert user and redirect
+  //to login page
   if (!currentUser) {
     toast.error("Please login to continue", {
       toastId: 1234,

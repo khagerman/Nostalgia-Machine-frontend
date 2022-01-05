@@ -1,11 +1,11 @@
 import React, { useState, useContext } from "react";
 
 import NostalgiaApi from "../api";
-import { useHistory } from "react-router-dom";
+
 import UserContext from "../auth/UserContext";
-import { ToastContainer, toast } from "react-toastify";
-import { Container, Card, FormGroup, TextField, Button } from "@mui/material";
-import { Formik, Form, Field, ErrorMessage } from "formik";
+
+import { Card, FormGroup, TextField, Button } from "@mui/material";
+import { Formik, Form, Field } from "formik";
 import { object, string } from "yup";
 import "./PostDetail.css";
 export default function EditPost({
@@ -13,12 +13,12 @@ export default function EditPost({
   toggle,
   title,
   url,
-  updatedPost,
+
   updatePost,
 }) {
   const { currentUser, setCurrentUser } = useContext(UserContext);
   /**
-   *EditPost component
+   *EditPost component for post detail page
 
    *form to edit post if user is author
 */
@@ -41,7 +41,7 @@ export default function EditPost({
       setCurrentUser(currentUser);
       updatePost(post);
     } catch (errors) {
-      console.log(errors);
+      console.error(errors);
     }
   }
   // schema to check edit and provide feedback to user
@@ -50,7 +50,7 @@ export default function EditPost({
     title: string().required().min(1).max(100),
   });
   return (
-    <Card sx={{ maxWidth: 345 }} className="Modal">
+    <Card className="Card">
       <Formik
         initialValues={{
           url: url,

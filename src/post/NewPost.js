@@ -3,19 +3,11 @@ import { useHistory } from "react-router-dom";
 
 import NostalgiaApi from "../api";
 import UserContext from "../auth/UserContext";
-import { Formik, Form, Field, ErrorMessage } from "formik";
+import { Formik, Form, Field } from "formik";
 import { object, string } from "yup";
-import { ToastContainer, toast } from "react-toastify";
+import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import {
-  TextField,
-  FormGroup,
-  Container,
-  Button,
-  Select,
-  Box,
-  Alert,
-} from "@mui/material";
+import { TextField, FormGroup, Container, Button, Alert } from "@mui/material";
 /**
    *NewPosr component
 
@@ -39,7 +31,7 @@ function NewPost() {
       // goes to decade page of given decade of post
       history.push(`/decade/${parseInt(decade)}`);
     } catch (errors) {
-      console.log(errors);
+      console.error(errors);
       // alerts of errors if any
       toast.error(errors[0], {
         position: toast.POSITION.TOP_CENTER,
@@ -59,7 +51,7 @@ function NewPost() {
   });
   return (
     <>
-      <h2 className="mb-3">New Post/Memory</h2>
+      <h2 className="m-3">New Post/Memory</h2>
 
       <Formik
         initialValues={{
@@ -74,7 +66,7 @@ function NewPost() {
         {({ errors, touched }) => (
           <Container maxWidth="xs">
             <Form>
-              <FormGroup>
+              <FormGroup className="mb-2">
                 <Field
                   id="url"
                   name="url"
@@ -86,7 +78,7 @@ function NewPost() {
                   <Alert severity={"error"}>{errors.url}</Alert>
                 ) : null}
               </FormGroup>
-              <FormGroup>
+              <FormGroup className="mb-2">
                 <Field
                   name="title"
                   id="title"
@@ -99,7 +91,7 @@ function NewPost() {
                   <Alert severity={"error"}>{errors.title}</Alert>
                 ) : null}
               </FormGroup>
-              <FormGroup>
+              <FormGroup className="mb-2">
                 <Field
                   label="Decade"
                   value={decade}

@@ -1,27 +1,15 @@
-.AppBar {
-  text-decoration: none;
-  padding-bottom: 5px;
-  background-color: white !important;
-}
-a:hover,
-a:visited,
-a:link,
-a:active {
-  text-decoration: none;
-}
 @import url(//fonts.googleapis.com/css?family=Vibur);
-
-.logo b {
+.DecadePage h2 {
   font: 400 5vh "Vibur";
   color: #fee;
   text-shadow: 0 -40px 100px, 0 0 2px, 0 0 1em #ff44a2, 0 0 0.5em #ff44a2,
     0 0 0.1em #ff44a2;
   /* 0 10px 3px #000; */
 }
-.logo b span {
+.DecadePage h2 b span {
   animation: blink linear infinite 2s;
 }
-.logo b span:nth-of-type(2) {
+.DecadePage h2 b span:nth-of-type(2) {
   animation: blink linear infinite 3s;
 }
 /* @keyframes blink {
@@ -54,6 +42,5 @@ a:active {
   92.5% {
     color: inherit;
     text-shadow: inherit;
-  } */
-/* } */
-/* logo css by @nodws */
+  }
+} */

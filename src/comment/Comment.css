@@ -1,0 +1,162 @@
+.Container {
+  background: #ecf0f1;
+  margin-top: 10px;
+  border-radius: 5px;
+  padding-bottom: 15px;
+  text-align: center;
+}
+
+.Comment {
+  background: white;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px;
+  margin-bottom: -15px;
+}
+/* .CommentBox {
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px;
+} */
+span i {
+  height: 1rem;
+}
+
+.example-enter {
+  opacity: 0.01;
+  transition: opacity 0.5s linear;
+}
+
+.example-enter.example-enter-active {
+  opacity: 1;
+}
+
+.example-leave {
+  opacity: 1;
+  transition: opacity 0.5s linear;
+}
+
+.example-leave.example-leave-active {
+  opacity: 0.01;
+}
+
+.Container {
+  background: #ecf0f1;
+  margin-top: 10px;
+  border-radius: 5px;
+  padding-bottom: 15px;
+}
+
+input {
+  outline: none;
+}
+
+input[type="text"] {
+  border: none;
+  padding: 10px 20px;
+  height: 40px;
+  line-height: 40px;
+  background: white;
+  box-sizing: border-box;
+  border-radius: 5px;
+  margin: 10px 0px;
+  width: 100%;
+}
+
+input[type="text"]:focus {
+  border: 2px solid #1abc9c;
+  padding-left: 18px;
+}
+
+input[type="submit"] {
+  width: 100%;
+  border: none;
+  background: #1abc9c;
+  color: white;
+  border-radius: 5px;
+  height: 40px;
+  line-height: 40px;
+  transition: all 0.5s;
+}
+
+input[type="submit"]:hover {
+  background: #16a085;
+}
+.Comment {
+  background: white;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px;
+  margin-bottom: -15px;
+}
+
+.example-enter {
+  opacity: 0.01;
+  transition: opacity 0.5s linear;
+}
+
+.example-enter.example-enter-active {
+  opacity: 1;
+}
+
+.example-leave {
+  opacity: 1;
+  transition: opacity 0.5s linear;
+}
+
+.example-leave.example-leave-active {
+  opacity: 0.01;
+}
+
+.Container {
+  background: #ecf0f1;
+  margin-top: 10px;
+  border-radius: 5px;
+  padding-bottom: 15px;
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+}
+
+input {
+  outline: none;
+}
+
+input[type="text"] {
+  border: none;
+  padding: 10px 20px;
+  height: 40px;
+  line-height: 40px;
+  background: white;
+  box-sizing: border-box;
+  border-radius: 5px;
+  margin: 10px 0px;
+  width: 100%;
+}
+
+input[type="text"]:focus {
+  border: 2px solid #1abc9c;
+  padding-left: 18px;
+}
+
+input[type="submit"] {
+  width: 100%;
+  border: none;
+  background: #1abc9c;
+  color: white;
+  border-radius: 5px;
+  height: 40px;
+  line-height: 40px;
+  transition: all 0.5s;
+}
+
+input[type="submit"]:hover {
+  background: #16a085;
+}
+.Comment {
+  background: white;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px;
+  margin-bottom: -15px;
+}

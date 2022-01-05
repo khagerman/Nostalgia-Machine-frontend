@@ -1,0 +1,8 @@
+.CardModal {
+  display: flex;
+  text-align: center;
+}
+.Card img {
+  width: 100%;
+  height: 15vw;
+}

@@ -1,25 +1,16 @@
 import React, { useState, useContext } from "react";
 
 import NostalgiaApi from "../api";
-import { useHistory } from "react-router-dom";
 import UserContext from "../auth/UserContext";
-import { ToastContainer, toast } from "react-toastify";
-import {
-  Container,
-  Card,
-  FormGroup,
-  TextField,
-  Button,
-  Alert,
-} from "@mui/material";
-import { Formik, Form, Field, ErrorMessage } from "formik";
+import { Card, FormGroup, TextField, Button, Alert } from "@mui/material";
+import { Formik, Form, Field } from "formik";
 import { object, string } from "yup";
 export default function EditPost({
   id,
   toggle,
   title,
   url,
-  updatedPost,
+
   updatePost,
 }) {
   const { currentUser, setCurrentUser } = useContext(UserContext);
@@ -50,7 +41,7 @@ export default function EditPost({
       setCurrentUser(currentUser);
       updatePost(post);
     } catch (errors) {
-      console.log(errors);
+      console.error(errors);
     }
   }
   // schema to check edit and provide feedback to user

@@ -110,7 +110,7 @@ function App() {
     try {
       await NostalgiaApi.unlike(currentUser.username, id);
     } catch (e) {
-      console.log(e);
+      console.error(e);
     }
   }
   //like a post logic
@@ -118,7 +118,7 @@ function App() {
     try {
       await NostalgiaApi.like(currentUser.username, id);
     } catch (e) {
-      console.log(e);
+      console.error(e);
     }
   }
   //notify user they must login if they try to like a post and login

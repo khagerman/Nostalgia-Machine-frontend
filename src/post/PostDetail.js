@@ -89,17 +89,15 @@ shows like button if not posted by currentUser
     }
   }
   return (
-    <>
-      <h1>{post.title}</h1>
+    <div className="row">
+      <h1 className="m-4">{post.title}</h1>
 
-      <Modal open={open} onClose={handleClose}>
-        <Box className="Modal">
-          <EditPostDetail id={id} url={post.url} title={post.title} />
-        </Box>
+      <Modal className="Modal" open={open} onClose={handleClose}>
+        <EditPostDetail id={id} url={post.url} title={post.title} />
       </Modal>
 
-      <div>
-        <img src={post.url}></img>
+      <div className="col">
+        <img className="img-fluid" src={post.url}></img>
 
         <h2>Posted by: {post.username}</h2>
       </div>
@@ -132,7 +130,7 @@ shows like button if not posted by currentUser
         handleEdit={handleEdit}
         handleDelete={handleDelete}
       />
-    </>
+    </div>
   );
 }
 export default PostDetail;

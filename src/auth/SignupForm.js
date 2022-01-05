@@ -29,7 +29,7 @@ function SignupForm({ signup }) {
     if (result.success) {
       history.push("/");
     } else {
-      console.log(result.errors);
+      console.error(result.errors);
       toast.error(result.errors[0], {
         position: toast.POSITION.TOP_CENTER,
       });
@@ -61,7 +61,9 @@ function SignupForm({ signup }) {
                 {errors.username && touched.username ? (
                   <Alert severity={"error"}>{errors.username}</Alert>
                 ) : null}
-
+              </FormGroup>
+              <br></br>
+              <FormGroup>
                 <Field
                   id="password"
                   as={TextField}

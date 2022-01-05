@@ -9,7 +9,11 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
-    monospace;
+a:hover {
+  color: #e76ac4 !important;
+}
+
+form:focus {
+  border-color: white !important;
+  box-shadow: white;
 }

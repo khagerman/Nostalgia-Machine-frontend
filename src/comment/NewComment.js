@@ -4,7 +4,7 @@ import NostalgiaApi from "../api";
 
 import "react-toastify/dist/ReactToastify.css";
 import UserContext from "../auth/UserContext";
-import { Alert, Button } from "@mui/material";
+import { Alert, Button, TextField } from "@mui/material";
 // import {} from "react-dom/cjs/react-dom.development";
 
 /**
@@ -54,7 +54,7 @@ export default function NewComment({ postId, onUpdate }) {
         <Alert severity="warning">Comment cannot be blank!</Alert>
       ) : null}
       <form onSubmit={handleSubmit}>
-        <label htmlFor="text">Comment</label>
+        <label htmlFor="text">Add New Comment </label>
         <input
           type="text"
           name="text"

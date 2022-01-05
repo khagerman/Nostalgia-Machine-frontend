@@ -3,12 +3,12 @@ import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
 import Typography from "@mui/material/Typography";
-import { CardActionArea, IconButton } from "@mui/material";
+import { CardActionArea, IconButton, Modal } from "@mui/material";
 import { Link } from "react-router-dom";
 import UserContext from "../auth/UserContext";
 import NostalgiaApi from "../api";
-import EditPost from "./EditPost";
-import { ToastContainer, toast } from "react-toastify";
+import EditPostDetail from "./EditPostDetail";
+import "./PostCard.css";
 import "react-toastify/dist/ReactToastify.css";
 
 export default function PostCard({ id, url, title, username, handleLike }) {
@@ -16,7 +16,7 @@ export default function PostCard({ id, url, title, username, handleLike }) {
     useContext(UserContext);
   const [show, setShow] = useState(false);
   const [updatedPost, updatePost] = useState(null);
-  //todo seperate card for profile?
+  //todo seperate card for profile? different size
   /**
    *PostCard component
 *card for each post
@@ -28,7 +28,7 @@ shows like button if not posted by currentUser
 */
 
   // show or hide update post form
-  const togglePop = () => {
+  const togglePopUp = () => {
     setShow(!show);
   };
 
@@ -55,53 +55,53 @@ shows like button if not posted by currentUser
   // }
   return (
     <div>
-      {show ? (
-        <EditPost
-          id={id}
-          toggle={togglePop}
-          url={url}
-          title={title}
-          updatedPost={updatedPost}
-          updatePost={updatePost}
-        />
-      ) : (
-        <Card>
-          <CardActionArea
-            sx={{ maxWidth: 345 }}
-            component={Link}
-            to={`/post/${id}`}
-          >
-            <CardMedia component="img" height="300" image={url} alt={title} />
-            <CardContent>
-              <Typography gutterBottom variant="h5" component="div">
-                {title}
-              </Typography>
-              <Typography variant="body2" color="text.secondary">
-                {/* Posted by: {username} */}
-              </Typography>
-            </CardContent>
-          </CardActionArea>
-          {username !== currentUser?.username ? (
-            <IconButton onClick={handleLike}>
-              {/* check if user has already liked */}
-              {likedIds.has(id) && currentUser ? (
-                <i className="fas fa-heart"></i>
-              ) : (
-                <i className="far fa-heart"></i>
-              )}
+      <Card className="Card">
+        <Modal className="CardModal" open={show} onClose={togglePopUp}>
+          <EditPostDetail
+            id={id}
+            // toggle={togglePop}
+            url={url}
+            title={title}
+            updatedPost={updatedPost}
+            updatePost={updatePost}
+          />
+        </Modal>
+
+        <CardActionArea
+          // sx={{ maxWidth: 345 }}
+          component={Link}
+          to={`/post/${id}`}
+        >
+          <CardMedia component="img" image={url} alt={title} />
+          <CardContent>
+            <Typography gutterBottom variant="h5" component="div">
+              {title}
+            </Typography>
+            <Typography variant="body2" color="text.secondary">
+              {/* Posted by: {username} */}
+            </Typography>
+          </CardContent>
+        </CardActionArea>
+        {username !== currentUser?.username ? (
+          <IconButton onClick={handleLike}>
+            {/* check if user has already liked */}
+            {likedIds.has(id) && currentUser ? (
+              <i className="fas fa-heart"></i>
+            ) : (
+              <i className="far fa-heart"></i>
+            )}
+          </IconButton>
+        ) : (
+          <>
+            <IconButton onClick={togglePopUp}>
+              <i color="primary" className="fas fa-edit"></i>
             </IconButton>
-          ) : (
-            <>
-              <IconButton onClick={togglePop}>
-                <i color="primary" className="fas fa-edit"></i>
-              </IconButton>
-              <IconButton onClick={() => handleDelete(id)}>
-                <i color="danger" className="fas fa-trash-alt"></i>
-              </IconButton>
-            </>
-          )}
-        </Card>
-      )}
+            <IconButton onClick={() => handleDelete(id)}>
+              <i color="danger" className="fas fa-trash-alt"></i>
+            </IconButton>
+          </>
+        )}
+      </Card>
     </div>
   );
 }

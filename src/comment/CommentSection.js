@@ -3,7 +3,7 @@ import { useParams, useHistory, Link } from "react-router-dom";
 
 import Comment from "./Comment";
 import NewComment from "./NewComment";
-import LoadingSpinner from "../common/LoadingSpinner";
+
 import UserContext from "../auth/UserContext";
 
 import "react-toastify/dist/ReactToastify.css";
@@ -24,8 +24,10 @@ function CommentSection({
 }) {
   const { currentUser } = useContext(UserContext);
   return (
-    <Container>
-      <h3>Comments</h3>
+    <Container className="row Container">
+      <div className="col-xs-12">
+        <h3>Comments</h3>
+      </div>
       {/* if logged in user show comment form else show warning to log in */}
       {currentUser ? (
         <NewComment postId={id} onUpdate={() => handleNewPost()} />
@@ -34,7 +36,7 @@ function CommentSection({
           Please <Link to="/login">login</Link> to comment
         </Alert>
       )}
-      <List sx={{ width: "100%", maxWidth: 360, bgcolor: "background.paper" }}>
+      <div className="row">
         {comments.length !== 0 ? (
           comments.map((c) => (
             <Comment
@@ -50,7 +52,7 @@ function CommentSection({
         ) : (
           <h2>No comments yet!</h2>
         )}
-      </List>
+      </div>
     </Container>
   );
 }

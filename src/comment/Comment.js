@@ -1,7 +1,7 @@
 import React, { useContext, useState } from "react";
 
 import UserContext from "../auth/UserContext";
-
+import "./Comment.css";
 import {
   IconButton,
   ListItem,
@@ -80,48 +80,47 @@ export default function Comment({
   // }
   return (
     <>
-      <ListItem>
+      <div className="m-7 Comment">
         {/* <ListItemAvatar>
           <Avatar {...stringAvatar(username)} />
         </ListItemAvatar> */}
 
-        <ListItemText
-          // if editing show form else show text
-          primary={toggle ? edit : text}
-          secondary={
-            <>
-              <Typography
-                sx={{ display: "inline" }}
-                component="span"
-                variant="body2"
-                color="text.primary"
-              >
-                {username}
-              </Typography>
+        {username}
+        {/* if comment is by user allow user to edit/delete */}
+        {username === currentUser?.username ? (
+          <>
+            <IconButton
+              onClick={() => {
+                setToggle(true);
+              }}
+            >
+              <i className="fas fa-edit"></i>
+            </IconButton>
+            {/* delete post */}
+            <IconButton onClick={() => handleDelete(postId, commentId)}>
+              <i className="fas fa-trash-alt"></i>
+            </IconButton>
+          </>
+        ) : (
+          ""
+        )}
 
-              {/* if comment is by user allow user to edit/delete */}
-              {username === currentUser?.username ? (
-                <span>
-                  <IconButton
-                    onClick={() => {
-                      setToggle(true);
-                    }}
-                  >
-                    <i className="fas fa-edit"></i>
-                  </IconButton>
-                  {/* delete post */}
-                  <IconButton onClick={() => handleDelete(postId, commentId)}>
-                    <span className="fas fa-trash-alt"></span>
-                  </IconButton>
-                </span>
-              ) : (
-                ""
-              )}
-            </>
-          }
-        />
-      </ListItem>
-      <Divider variant="inset" component="li" />
+        {/* // if editing show form else show text
+         */}
+        {
+          <>
+            <div
+              className="Comment"
+              // sx={{ display: "inline" }}
+              // component="span"
+              // variant="body2"
+              // color="text.primary"
+            >
+              {toggle ? edit : text}
+            </div>
+          </>
+        }
+      </div>
     </>
   );
 }

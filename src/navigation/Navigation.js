@@ -40,9 +40,6 @@ function Navigation({ logout }) {
     setAnchorElNav(null);
   };
 
-  const handleCloseUserMenu = () => {
-    setAnchorElUser(null);
-  };
   const open = Boolean(anchorEl);
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
@@ -50,7 +47,7 @@ function Navigation({ logout }) {
   const handleClose = () => {
     setAnchorEl(null);
   };
-
+  //dacade choice dropdown
   function decadeDropDown() {
     return (
       <>
@@ -73,60 +70,52 @@ function Navigation({ logout }) {
             "aria-labelledby": "basic-button",
           }}
         >
-          <MenuItem onClick={handleClose}>
-            <MULink
-              underline="none"
-              color="inherit"
-              component={Link}
-              to="/decade/1"
-            >
-              1960s
-            </MULink>
-          </MenuItem>
-          <MenuItem onClick={handleClose}>
-            <MULink
-              underline="none"
-              color="inherit"
-              component={NavLink}
-              to="/decade/2"
-            >
-              1970s
-            </MULink>
-          </MenuItem>
-          <MenuItem onClick={handleClose}>
-            <MULink
-              underline="none"
-              color="inherit"
-              component={NavLink}
-              to="/decade/3"
-            >
-              1980s
-            </MULink>
-          </MenuItem>
-          <MenuItem onClick={handleClose}>
-            <MULink
-              underline="none"
-              color="inherit"
-              component={NavLink}
-              to="/decade/4"
-            >
-              1990s
-            </MULink>
-          </MenuItem>
-          <MenuItem onClick={handleClose}>
-            <MULink
-              underline="none"
-              color="inherit"
-              component={NavLink}
-              to="/decade/5"
-            >
-              2000s
-            </MULink>
-          </MenuItem>
+          <MULink
+            underline="none"
+            color="inherit"
+            component={Link}
+            to="/decade/1"
+          >
+            <MenuItem onClick={handleClose}>1960s</MenuItem>
+          </MULink>
+          <MULink
+            underline="none"
+            color="inherit"
+            component={NavLink}
+            to="/decade/2"
+          >
+            <MenuItem onClick={handleClose}>1970s</MenuItem>
+          </MULink>
+          <MULink
+            underline="none"
+            color="inherit"
+            component={NavLink}
+            to="/decade/3"
+          >
+            <MenuItem onClick={handleClose}>1980s</MenuItem>
+          </MULink>
+
+          <MULink
+            underline="none"
+            color="inherit"
+            component={NavLink}
+            to="/decade/4"
+          >
+            <MenuItem onClick={handleClose}>1990s</MenuItem>
+          </MULink>
+          <MULink
+            underline="none"
+            color="inherit"
+            component={NavLink}
+            to="/decade/5"
+          >
+            <MenuItem onClick={handleClose}>2000s</MenuItem>
+          </MULink>
         </Menu>
       </>
     );
   }
+  //navigation when user logged in
   function loggedInNav() {
     return (
       <>
@@ -145,7 +134,7 @@ function Navigation({ logout }) {
       </>
     );
   }
-
+  //navigation when user logged out
   function loggedOutNav() {
     return (
       <>
@@ -168,22 +157,23 @@ function Navigation({ logout }) {
 
   return (
     <nav>
-      <AppBar position="static" className="AppBar">
+      <AppBar elevation={0} position="static" className="AppBar">
         <Container maxWidth="xl">
           <Toolbar disableGutters>
-            <div sx={{ display: "flex" }}>
-              <Link to="/">
-                <img src={logo}></img>
-              </Link>
-            </div>
-            {/* <Typography
-              variant="h6"
-              noWrap
-              component="div"
-              sx={{ mr: 2, display: { xs: "none", md: "flex" } }}
-            >
-              NOSTALGIA MACHINE
-            </Typography> */}
+            {/* <Box sx={{ display: "flex" }}>
+              
+            </Box> */}
+            <Link to="/">
+              <div className="logo m-2">
+                <b>
+                  n<span>os</span>tal<span>gi</span>a
+                </b>
+                &nbsp;
+                <b>
+                  m<span>a</span>ch<span>i</span>ne
+                </b>
+              </div>
+            </Link>
             <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}>
               <Menu
                 id="menu-appbar"

@@ -15,12 +15,12 @@ function Homepage() {
       <div className="Greeting">
         <Box sx={{ m: 2 }}>
           {" "}
-          <Typography variant="h3">Travel the past...</Typography>
+          <h1 className="display-3">Feel the power of nostalgia</h1>
         </Box>
-        <Typography variant="body1">
+        <div className="blockquote">
           {currentUser ? `Hey, ${currentUser.username}!` : ""}
-        </Typography>
-        <Typography variant="body1">
+        </div>
+        <div className="lead">
           Welcome to the{" "}
           <TextLoop>
             <Box sx={{ color: "secondary.main" }}>groovy </Box>
@@ -31,7 +31,7 @@ function Homepage() {
           </TextLoop>{" "}
           Nostalgia Machine. A place to share and enjoy memories from times of
           yore.
-        </Typography>
+        </div>
       </div>
     </div>
   );
