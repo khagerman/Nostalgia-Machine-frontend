@@ -1,11 +1,20 @@
 .Modal {
-  display: flex;
+  /* display: flex;
 
   justify-content: center;
-  align-items: center;
-
+  align-items: center; */
+  margin: 5em;
   text-align: center;
 }
-.Card {
-  padding: 40px;
+
+.container img {
+  width: auto;
+  max-height: 40rem;
+  height: auto;
+}
+.title {
+  text-transform: capitalize;
+}
+.author {
+  font-size: 2rem;
 }

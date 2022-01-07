@@ -1,7 +1,7 @@
 import React, { useState, useContext } from "react";
 
 import NostalgiaApi from "../api";
-
+import "./Comment.css";
 import "react-toastify/dist/ReactToastify.css";
 import UserContext from "../auth/UserContext";
 import { Alert, Button, TextField } from "@mui/material";
@@ -49,22 +49,34 @@ export default function NewComment({ postId, onUpdate }) {
     }));
   };
   return (
-    <div>
+    <div className="NewCommentForm m-3">
       {formErrors ? (
         <Alert severity="warning">Comment cannot be blank!</Alert>
       ) : null}
       <form onSubmit={handleSubmit}>
-        <label htmlFor="text">Add New Comment </label>
-        <input
-          type="text"
-          name="text"
-          id="text"
-          value={formData.text}
-          onChange={handleChange}
-        />
-        <Button type="submit" onSubmit={handleSubmit}>
-          Add
-        </Button>
+        <label className="m-2" htmlFor="text">
+          Add New Comment
+        </label>
+        <span>
+          <input
+            type="text"
+            name="text"
+            id="text"
+            value={formData.text}
+            onChange={handleChange}
+          />
+        </span>
+        <span>
+          <Button
+            variant="contained"
+            size="small"
+            type="submit"
+            onSubmit={handleSubmit}
+            className="m-3"
+          >
+            Add
+          </Button>
+        </span>
       </form>
     </div>
   );

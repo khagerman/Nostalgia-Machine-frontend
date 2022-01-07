@@ -73,14 +73,15 @@ shows like button if not posted by currentUser
           to={`/post/${id}`}
         >
           <CardMedia component="img" image={url} alt={title} />
-          <CardContent>
-            <Typography gutterBottom variant="h5" component="div">
-              {title}
-            </Typography>
-            <Typography variant="body2" color="text.secondary">
-              {/* Posted by: {username} */}
-            </Typography>
-          </CardContent>
+
+          <Typography
+            className="title"
+            gutterBottom
+            variant="h5"
+            component="div"
+          >
+            {title}
+          </Typography>
         </CardActionArea>
         {username !== currentUser?.username ? (
           <IconButton onClick={handleLike}>

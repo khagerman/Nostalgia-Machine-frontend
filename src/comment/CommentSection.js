@@ -5,7 +5,7 @@ import Comment from "./Comment";
 import NewComment from "./NewComment";
 
 import UserContext from "../auth/UserContext";
-
+import "./Comment.css";
 import "react-toastify/dist/ReactToastify.css";
 import { Alert, Modal, Box, IconButton, List, Container } from "@mui/material";
 
@@ -24,10 +24,9 @@ function CommentSection({
 }) {
   const { currentUser } = useContext(UserContext);
   return (
-    <Container className="row Container">
-      <div className="col-xs-12">
-        <h3>Comments</h3>
-      </div>
+    <div className="CommentSection row justify-content-center shadow-m p-3 rounded">
+      <h2>Comments</h2>
+
       {/* if logged in user show comment form else show warning to log in */}
       {currentUser ? (
         <NewComment postId={id} onUpdate={() => handleNewPost()} />
@@ -36,7 +35,7 @@ function CommentSection({
           Please <Link to="/login">login</Link> to comment
         </Alert>
       )}
-      <div className="row">
+      <div className="col-10">
         {comments.length !== 0 ? (
           comments.map((c) => (
             <Comment
@@ -50,10 +49,10 @@ function CommentSection({
             />
           ))
         ) : (
-          <h2>No comments yet!</h2>
+          <em>No comments yet!</em>
         )}
       </div>
-    </Container>
+    </div>
   );
 }
 

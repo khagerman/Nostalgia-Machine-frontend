@@ -4,7 +4,7 @@ import NostalgiaApi from "../api";
 
 import UserContext from "../auth/UserContext";
 
-import { Card, FormGroup, TextField, Button } from "@mui/material";
+import { Card, FormGroup, TextField, Button, Alert } from "@mui/material";
 import { Formik, Form, Field } from "formik";
 import { object, string } from "yup";
 import "./PostDetail.css";
@@ -62,7 +62,7 @@ export default function EditPost({
         }}
       >
         {({ errors, touched }) => (
-          <Form>
+          <Form className="Modal">
             <FormGroup>
               <Field
                 name="url"
@@ -71,7 +71,7 @@ export default function EditPost({
                 as={TextField}
               />
               {errors.url && touched.url ? (
-                <div style={{ color: "red" }}>{errors.url}</div>
+                <Alert severity={"error"}>{errors.url}</Alert>
               ) : null}
             </FormGroup>
             <FormGroup>
@@ -83,7 +83,7 @@ export default function EditPost({
                 label="Post Text"
               />
               {errors.title && touched.title ? (
-                <div style={{ color: "red" }}>{errors.title}</div>
+                <Alert severity={"error"}>{errors.title}</Alert>
               ) : null}
             </FormGroup>
             <Button variant="contained" type="submit" onSubmit={handleSubmit}>

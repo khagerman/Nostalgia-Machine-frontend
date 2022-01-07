@@ -24,11 +24,11 @@ function Profile() {
 shows like button if not posted by currentUser
 */
   //show loading spinner if content not loaded
-  if (!currentUser || !likes || !likedIds) return <LoadingSpinner />;
+  // if (!currentUser) return <LoadingSpinner />;
 
   return (
     <Container>
-      <h1 className="p-3 display-3"> {currentUser.username}'s Profile</h1>
+      <h1 className="p-3 display-3"> {currentUser?.username}'s Profile</h1>
       <div className="section">
         <h2 className="display-4">Your likes and fond memories</h2>
         <Grid
@@ -36,12 +36,12 @@ shows like button if not posted by currentUser
           spacing={{ xs: 2, md: 3 }}
           columns={{ xs: 4, sm: 8, md: 12 }}
         >
-          {likes.favorites.length === 0 ? (
+          {likes?.favorites?.length === 0 ? (
             <Box sx={{ mx: "auto" }}>
-              <h4>You havn't liked anything....yet!</h4>
+              <h4>You haven't liked anything....yet!</h4>
             </Box>
           ) : (
-            likes.favorites.map((p) => (
+            likes?.favorites?.map((p) => (
               <Grid item xs={2} sm={4} md={4} key={p.id}>
                 <PostCard
                   className="profilecard"
@@ -65,12 +65,12 @@ shows like button if not posted by currentUser
           spacing={{ xs: 2, md: 3 }}
           columns={{ xs: 4, sm: 8, md: 12 }}
         >
-          {currentUser.posts.length === 0 ? (
+          {currentUser?.posts.length === 0 ? (
             <Box sx={{ mx: "auto" }}>
               <h4>You haven't shared anything....yet!</h4>
             </Box>
           ) : (
-            currentUser.posts.map((p) => (
+            currentUser?.posts.map((p) => (
               <Grid item xs={2} sm={4} md={4} key={p.id}>
                 <Container>
                   <PostCard

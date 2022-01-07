@@ -9,7 +9,8 @@ import useLocalStorage from "./hooks/useLocalStorage";
 import jwt from "jsonwebtoken";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-
+import { Container } from "@mui/material";
+import LoadingSpinner from "./common/LoadingSpinner";
 /** Nostalgia Machine application.
  *
  *
@@ -141,6 +142,7 @@ function App() {
       setLikedIds(new Set([...likedIds, id]));
     }
   }
+  if (!infoLoaded) return <LoadingSpinner />;
   return (
     <BrowserRouter>
       <UserContext.Provider
@@ -156,12 +158,12 @@ function App() {
           handleLike,
         }}
       >
-        <div className="App">
+        <Container className="App">
           {/* container for toast alerts */}
           <ToastContainer autoClose={4000} hideProgressBar={true} />
           <Navigation logout={logout} />
           <Routes login={login} signup={signup} />
-        </div>
+        </Container>
       </UserContext.Provider>
     </BrowserRouter>
   );

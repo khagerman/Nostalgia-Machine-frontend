@@ -12,8 +12,3 @@ body {
 a:hover {
   color: #e76ac4 !important;
 }
-
-form:focus {
-  border-color: white !important;
-  box-shadow: white;
-}

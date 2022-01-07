@@ -1,13 +1,22 @@
 import React, { useState, useContext } from "react";
 import { useHistory } from "react-router-dom";
-
+import "./NewPost.css";
 import NostalgiaApi from "../api";
+import LoadingSpinner from "../common/LoadingSpinner";
 import UserContext from "../auth/UserContext";
 import { Formik, Form, Field } from "formik";
 import { object, string } from "yup";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { TextField, FormGroup, Container, Button, Alert } from "@mui/material";
+import {
+  TextField,
+  FormGroup,
+  Container,
+  Button,
+  Alert,
+  Select,
+  MenuItem,
+} from "@mui/material";
 /**
    *NewPosr component
 
@@ -49,10 +58,11 @@ function NewPost() {
     url: string().required().url(),
     title: string().required().min(1).max(100),
   });
+  if (!currentUser) return <LoadingSpinner />;
   return (
     <>
       <h2 className="m-3">New Post/Memory</h2>
-
+      {console.log(currentUser)}
       <Formik
         initialValues={{
           url: "",
@@ -91,28 +101,29 @@ function NewPost() {
                   <Alert severity={"error"}>{errors.title}</Alert>
                 ) : null}
               </FormGroup>
-              <FormGroup className="mb-2">
+              <FormGroup>
                 <Field
-                  label="Decade"
+                  // className="select"
+                  label="xncnjcmnxecade"
                   value={decade}
-                  as="select"
+                  as={Select}
                   onChange={handleChangeSelect}
                 >
-                  <option name="1960s" value="1">
+                  <MenuItem name="1960s" value="1">
                     1960s
-                  </option>
-                  <option name="1970s" value="2">
+                  </MenuItem>
+                  <MenuItem name="1970s" value="2">
                     1970s
-                  </option>
-                  <option name="1980s" value="3">
+                  </MenuItem>
+                  <MenuItem name="1980s" value="3">
                     1980s
-                  </option>
-                  <option name="1990s" value="4">
+                  </MenuItem>
+                  <MenuItem name="1990s" value="4">
                     1990s
-                  </option>
-                  <option name="2000s" value="5">
+                  </MenuItem>
+                  <MenuItem name="2000s" value="5">
                     2000s
-                  </option>
+                  </MenuItem>
                 </Field>
               </FormGroup>
 

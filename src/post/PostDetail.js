@@ -8,7 +8,7 @@ import UserContext from "../auth/UserContext";
 import EditPostDetail from "./EditPostDetail";
 
 import "react-toastify/dist/ReactToastify.css";
-import { Modal, Box, IconButton } from "@mui/material";
+import { Modal, Box, IconButton, Container } from "@mui/material";
 import CommentSection from "../comment/CommentSection";
 function PostDetail() {
   const { id } = useParams();
@@ -89,25 +89,26 @@ shows like button if not posted by currentUser
     }
   }
   return (
-    <div className="row">
-      <h1 className="m-4">{post.title}</h1>
+    <div>
+      <h1 className="display-5 m-4 title">{post.title}</h1>
 
-      <Modal className="Modal" open={open} onClose={handleClose}>
+      <Modal open={open} onClose={handleClose}>
         <EditPostDetail id={id} url={post.url} title={post.title} />
       </Modal>
 
-      <div className="col">
-        <img className="img-fluid" src={post.url}></img>
-
-        <h2>Posted by: {post.username}</h2>
+      <div className="container">
+        <img className="img-thumbnail" src={post.url}></img>
       </div>
+
+      <p className="author lead mt-1"> Posted by: {post.username}</p>
+
       <div>
         {post?.username !== currentUser?.username ? (
           <IconButton onClick={() => handleLike(id, post.username)}>
             {likedIds.has(id) ? (
-              <i className="fas fa-heart"></i>
-            ) : (
               <i className="far fa-heart"></i>
+            ) : (
+              <i className="fas fa-heart"></i>
             )}
           </IconButton>
         ) : (

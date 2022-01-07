@@ -80,7 +80,7 @@ function DecadePage() {
         >
           {posts ? (
             posts.map((p) => (
-              <Grid item xs={2} sm={4} md={4} key={p.id}>
+              <Grid item xs={12} sm={4} md={4} key={p.id}>
                 <PostCard
                   id={p.id}
                   username={p.username}

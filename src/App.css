@@ -2,3 +2,11 @@
   text-align: center;
 }
 @import url(//fonts.googleapis.com/css?family=Vibur);
+
+.display-3,
+.display-2,
+.display-1,
+.display-4,
+.display-5 {
+  font-family: "Rubik", sans-serif !important;
+}

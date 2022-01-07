@@ -37,7 +37,9 @@ function SignupForm({ signup }) {
   }
   return (
     <div>
-      <h1>Signup</h1>
+      <h1 className="display-5" mb-3>
+        Signup
+      </h1>
       <Formik
         initialValues={{
           username: "",
@@ -51,7 +53,7 @@ function SignupForm({ signup }) {
         {({ errors, touched }) => (
           <Container maxWidth="xs">
             <Form>
-              <FormGroup>
+              <FormGroup className="mb-2">
                 <Field
                   id="username"
                   name="username"
@@ -62,7 +64,7 @@ function SignupForm({ signup }) {
                   <Alert severity={"error"}>{errors.username}</Alert>
                 ) : null}
               </FormGroup>
-              <br></br>
+
               <FormGroup>
                 <Field
                   id="password"
@@ -75,8 +77,13 @@ function SignupForm({ signup }) {
                   <Alert severity={"error"}>{errors.password}</Alert>
                 ) : null}
               </FormGroup>
-              <br></br>
-              <Button variant="contained" color="secondary" type="submit">
+
+              <Button
+                className="m-3"
+                variant="contained"
+                color="secondary"
+                type="submit"
+              >
                 Signup
               </Button>
             </Form>

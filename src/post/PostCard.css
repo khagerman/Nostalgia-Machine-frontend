@@ -1,8 +1,19 @@
-.CardModal {
-  display: flex;
+/* .CardModal {
   text-align: center;
-}
+  position: absolute;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+} */
 .Card img {
   width: 100%;
-  height: 15vw;
+  height: 20vw;
+}
+.title {
+  text-transform: capitalize;
+}
+
+.fas {
+  color: "#ff7cff" !important;
 }
