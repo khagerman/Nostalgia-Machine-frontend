@@ -69,7 +69,7 @@ function DecadePage() {
   return (
     <div className="DecadePage">
       <Box sx={{ m: 2 }}>
-        <h2> {decade.name}</h2>
+        <h2 className="DecadeTitle"> {decade.name}</h2>
       </Box>
       <Box sx={{ m: 3 }}>
         {/* mui grid logic */}
