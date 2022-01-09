@@ -59,7 +59,7 @@ shows like button if not posted by currentUser
         <Modal className="CardModal" open={show} onClose={togglePopUp}>
           <EditPostDetail
             id={id}
-            // toggle={togglePop}
+            toggle={togglePopUp}
             url={url}
             title={title}
             updatedPost={updatedPost}

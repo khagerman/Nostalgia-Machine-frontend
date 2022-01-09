@@ -34,7 +34,7 @@ export default function EditPost({
       let post = await NostalgiaApi.patchPost(id, {
         ...values,
       });
-      // hides edit form
+      // // hides edit form
       toggle();
       // updates current user to trigger update so changes are shown
       let currentUser = await NostalgiaApi.getUser(username);

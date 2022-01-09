@@ -24,6 +24,8 @@ a:active {
 .logo b span:nth-of-type(2) {
   animation: blink linear infinite 3s;
 }
+
+/* //blinking logo-may be too annnoying */
 /* @keyframes blink {
   78% {
     color: inherit;

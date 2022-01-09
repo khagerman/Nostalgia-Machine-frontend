@@ -38,7 +38,7 @@ shows like button if not posted by currentUser
         >
           {likes?.favorites?.length === 0 ? (
             <Box sx={{ mx: "auto" }}>
-              <h4>You haven't liked anything....yet!</h4>
+              <h4 className="m-3">You haven't liked anything....yet!</h4>
             </Box>
           ) : (
             likes?.favorites?.map((p) => (
