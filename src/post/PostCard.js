@@ -16,7 +16,7 @@ export default function PostCard({ id, url, title, username, handleLike }) {
     useContext(UserContext);
   const [show, setShow] = useState(false);
   const [updatedPost, updatePost] = useState(null);
-  //todo seperate card for profile? different size
+
   /**
    *PostCard component
 *card for each post

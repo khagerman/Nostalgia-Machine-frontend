@@ -1,14 +1,13 @@
 import React, { useState, useEffect, useContext } from "react";
-import { useParams, useHistory, Link } from "react-router-dom";
+import { useParams, useHistory } from "react-router-dom";
 import NostalgiaApi from "../api";
-import Comment from "../comment/Comment";
-import NewComment from "../comment/NewComment";
+
 import LoadingSpinner from "../common/LoadingSpinner";
 import UserContext from "../auth/UserContext";
 import EditPostDetail from "./EditPostDetail";
 
 import "react-toastify/dist/ReactToastify.css";
-import { Modal, Box, IconButton, Container } from "@mui/material";
+import { Modal, IconButton } from "@mui/material";
 import CommentSection from "../comment/CommentSection";
 function PostDetail() {
   const { id } = useParams();
@@ -88,8 +87,23 @@ shows like button if not posted by currentUser
       return { success: false, errors };
     }
   }
+  // function handleLike(id) {
+  //   if (!currentUser) {
+  //     toast.warn("Please login to like or save posts!", {
+  //       position: toast.POSITION.TOP_CENTER,
+  //     });
+  //   }
+  //   if (likedIds.has(id)) {
+  //     unlike(id);
+  //     setLikedIds(new Set(Array.from(likedIds).filter((l) => l !== id)));
+  //   } else {
+  //     like(id);
+  //     setLikedIds(new Set([...likedIds, id]));
+  //   }
+  // }
   return (
     <div>
+      {console.log(likedIds, likedIds.has(id), id)}
       <h1 className="display-5 m-4 title">{post.title}</h1>
 
       <Modal open={open} onClose={handleClose}>
@@ -104,11 +118,11 @@ shows like button if not posted by currentUser
 
       <div>
         {post?.username !== currentUser?.username ? (
-          <IconButton onClick={() => handleLike(id, post.username)}>
-            {likedIds.has(id) ? (
-              <i className="far fa-heart"></i>
-            ) : (
+          <IconButton onClick={() => handleLike(+id)}>
+            {likedIds.has(+id) ? (
               <i className="fas fa-heart"></i>
+            ) : (
+              <i className="far fa-heart"></i>
             )}
           </IconButton>
         ) : (
