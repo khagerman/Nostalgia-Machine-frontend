@@ -72,12 +72,20 @@ shows like button if not posted by currentUser
           component={Link}
           to={`/post/${id}`}
         >
-          <CardMedia component="img" image={url} alt={title} />
+          <CardMedia
+            className="img-fluid"
+            component="img"
+            image={url}
+            onError={(e) => {
+              e.target.src = "https://i.imgur.com/sjDBHUW.jpg";
+            }}
+            alt={title}
+          />
 
           <Typography
             className="title"
             gutterBottom
-            variant="h5"
+            variant="h6"
             component="div"
           >
             {title}

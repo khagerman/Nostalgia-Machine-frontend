@@ -7,7 +7,7 @@ import UserContext from "../auth/UserContext";
 import EditPostDetail from "./EditPostDetail";
 
 import "react-toastify/dist/ReactToastify.css";
-import { Modal, IconButton } from "@mui/material";
+import { Modal, IconButton, Button } from "@mui/material";
 import CommentSection from "../comment/CommentSection";
 function PostDetail() {
   const { id } = useParams();
@@ -87,20 +87,7 @@ shows like button if not posted by currentUser
       return { success: false, errors };
     }
   }
-  // function handleLike(id) {
-  //   if (!currentUser) {
-  //     toast.warn("Please login to like or save posts!", {
-  //       position: toast.POSITION.TOP_CENTER,
-  //     });
-  //   }
-  //   if (likedIds.has(id)) {
-  //     unlike(id);
-  //     setLikedIds(new Set(Array.from(likedIds).filter((l) => l !== id)));
-  //   } else {
-  //     like(id);
-  //     setLikedIds(new Set([...likedIds, id]));
-  //   }
-  // }
+
   return (
     <div>
       {console.log(likedIds, likedIds.has(id), id)}
@@ -111,7 +98,13 @@ shows like button if not posted by currentUser
       </Modal>
 
       <div className="container">
-        <img className="img-thumbnail" src={post.url}></img>
+        <img
+          className="img-thumbnail"
+          src={post.url}
+          onError={(e) => {
+            e.target.src = "https://i.imgur.com/sjDBHUW.jpg";
+          }}
+        ></img>
       </div>
 
       <p className="author lead mt-1"> Posted by: {post.username}</p>
@@ -137,6 +130,11 @@ shows like button if not posted by currentUser
             </IconButton>
           </>
         )}
+      </div>
+      <div>
+        <Button color="secondary" variant="outlined" onClick={history.goBack}>
+          <i class="fas fa-backward"></i>&nbsp; Go Back
+        </Button>
       </div>
       <CommentSection
         id={id}
