@@ -107,6 +107,7 @@ class NostalgiaApi {
   }
   static async userLikes(username) {
     let res = await this.request(`users/${username}/favorite`, {}, "get");
+    console.log(res);
     return res;
   }
 }

@@ -1,12 +1,10 @@
-.Modal {
+/* .Modal {
   /* display: flex;
 
   justify-content: center;
   align-items: center; */
-  margin: 5em;
-  text-align: center;
-}
-
+/* margin: 5em;
+  text-align: center; */
 .container img {
   width: auto;
   max-height: 40rem;

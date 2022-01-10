@@ -7,7 +7,7 @@ import { CardActionArea, IconButton, Modal } from "@mui/material";
 import { Link } from "react-router-dom";
 import UserContext from "../auth/UserContext";
 import NostalgiaApi from "../api";
-import EditPostDetail from "./EditPostDetail";
+import { EditPostDetail } from "./EditPostDetail";
 import "./PostCard.css";
 import "react-toastify/dist/ReactToastify.css";
 
@@ -30,6 +30,7 @@ shows like button if not posted by currentUser
   // show or hide update post form
   const togglePopUp = () => {
     setShow(!show);
+    console.log("works!");
   };
 
   //

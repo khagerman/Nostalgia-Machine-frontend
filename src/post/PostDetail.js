@@ -4,7 +4,7 @@ import NostalgiaApi from "../api";
 
 import LoadingSpinner from "../common/LoadingSpinner";
 import UserContext from "../auth/UserContext";
-import EditPostDetail from "./EditPostDetail";
+import { EditPostDetail } from "./EditPostDetail";
 
 import "react-toastify/dist/ReactToastify.css";
 import { Modal, IconButton, Button } from "@mui/material";
@@ -90,7 +90,6 @@ shows like button if not posted by currentUser
 
   return (
     <div>
-      {console.log(likedIds, likedIds.has(id), id)}
       <h1 className="display-5 m-4 title">{post.title}</h1>
 
       <Modal open={open} onClose={handleClose}>
