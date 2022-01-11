@@ -9,7 +9,7 @@ import {
   Menu,
   MenuItem,
   Box,
-  Typography,
+  IconButton,
   Toolbar,
   Container,
   Link as MULink,
@@ -31,7 +31,7 @@ function Navigation({ logout }) {
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
   };
-  const handleOpenUserMenu = (event) => {
+  const handleOpenMobile = (event) => {
     setAnchorElUser(event.currentTarget);
   };
 
@@ -46,7 +46,7 @@ function Navigation({ logout }) {
   const handleClose = () => {
     setAnchorEl(null);
   };
-  //dacade choice dropdown
+  //decade choice dropdown
   function decadeDropDown() {
     return (
       <>
@@ -153,7 +153,60 @@ function Navigation({ logout }) {
       </>
     );
   }
+  //mobile
+  function mobileMenu() {
+    return (
+      <>
+        <IconButton
+          size="large"
+          aria-controls="menu-appbar"
+          aria-haspopup="true"
+          onClick={handleOpenNavMenu}
+          color="secondary"
+          className="hamburgerMenu"
+        >
+          <i className="fas fa-bars"></i>
+        </IconButton>
+        <Menu
+          id="menu-appbar"
+          anchorEl={anchorElNav}
+          anchorOrigin={{
+            vertical: "bottom",
+            horizontal: "right",
+          }}
+          keepMounted
+          transformOrigin={{
+            vertical: "top",
+            horizontal: "left",
+          }}
+          open={Boolean(anchorElNav)}
+          onClose={handleCloseNavMenu}
+          sx={{
+            display: { xs: "block", md: "none" },
+          }}
+        >
+          <MenuItem>{decadeDropDown()}</MenuItem>
 
+          {currentUser ? (
+            <MenuItem>
+              <MULink
+                underline="none"
+                color="inherit"
+                component={NavLink}
+                to="/post/new"
+              >
+                <Button color="inherit">New Post</Button>
+              </MULink>
+            </MenuItem>
+          ) : (
+            ""
+          )}
+
+          <MenuItem>{currentUser ? loggedInNav() : loggedOutNav()}</MenuItem>
+        </Menu>
+      </>
+    );
+  }
   return (
     <nav>
       <AppBar elevation={0} position="static" className="AppBar">
@@ -170,39 +223,8 @@ function Navigation({ logout }) {
                 </b>
               </div>
             </Link>
-            <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}>
-              <Menu
-                id="menu-appbar"
-                anchorEl={anchorElNav}
-                anchorOrigin={{
-                  vertical: "bottom",
-                  horizontal: "left",
-                }}
-                keepMounted
-                transformOrigin={{
-                  vertical: "top",
-                  horizontal: "left",
-                }}
-                open={Boolean(anchorElNav)}
-                onClose={handleCloseNavMenu}
-                sx={{
-                  display: { xs: "block", md: "none" },
-                }}
-              >
-                <MenuItem onClick={handleCloseNavMenu}>
-                  <Typography textAlign="center"></Typography>
-                </MenuItem>
-              </Menu>
-            </Box>
-            {/* <Typography
-              variant="h6"
-              noWrap
-              component="div"
-              sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}
-            >
-              Nostalgia Machine
-            </Typography> */}
-            <Box sx={{ flexGrow: 1, display: { md: "flex" } }}>
+
+            <Box sx={{ flexGrow: 1, display: { xs: "none", sm: "flex" } }}>
               {decadeDropDown()}
 
               {currentUser ? (
@@ -220,9 +242,11 @@ function Navigation({ logout }) {
                 ""
               )}
             </Box>
-            <Box sx={{ flexGrow: 0 }}>
+
+            <Box sx={{ flexGrow: 1, display: { xs: "none", sm: "flex" } }}>
               {currentUser ? loggedInNav() : loggedOutNav()}
             </Box>
+            <Box sx={{ display: { sm: "none" } }}>{mobileMenu()}</Box>
           </Toolbar>
         </Container>
       </AppBar>

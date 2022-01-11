@@ -42,7 +42,7 @@ shows like button if not posted by currentUser
             </Box>
           ) : (
             likes?.favorites?.map((p) => (
-              <Grid item xs={2} sm={4} md={4} key={p.id}>
+              <Grid item xs={12} sm={4} md={4} key={p.id}>
                 <PostCard
                   className="profilecard"
                   id={p.id}
@@ -71,7 +71,7 @@ shows like button if not posted by currentUser
             </Box>
           ) : (
             currentUser?.posts.map((p) => (
-              <Grid item xs={2} sm={4} md={4} key={p.id}>
+              <Grid item xs={12} sm={4} md={4} key={p.id}>
                 <Container>
                   <PostCard
                     id={p.id}

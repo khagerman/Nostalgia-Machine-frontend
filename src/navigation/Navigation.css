@@ -59,3 +59,9 @@ a:active {
   } */
 /* } */
 /* logo css by @nodws */
+
+.hamburgerMenu {
+  position: fixed !important;
+  top: 0;
+  right: 0;
+}

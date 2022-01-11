@@ -1,6 +1,6 @@
 import React, { useState, useContext } from "react";
 import { useHistory } from "react-router-dom";
-import "./NewPost.css";
+
 import NostalgiaApi from "../api";
 import LoadingSpinner from "../common/LoadingSpinner";
 import UserContext from "../auth/UserContext";
@@ -59,7 +59,7 @@ function NewPost() {
     url: string().required().url(),
     title: string().required().min(1).max(100),
   });
-  if (!currentUser) return <LoadingSpinner />;
+
   return (
     <>
       <h2 className="m-3">New Post/Memory</h2>

@@ -2,13 +2,14 @@ import React, { useState, useEffect, useContext } from "react";
 import { useParams, useHistory } from "react-router-dom";
 import NostalgiaApi from "../api";
 
-import LoadingSpinner from "../common/LoadingSpinner";
+import NotFound from "../navigation/NotFound";
 import UserContext from "../auth/UserContext";
 import EditPostDetail from "./EditPostDetail";
 
 import "react-toastify/dist/ReactToastify.css";
 import { Modal, IconButton, Button } from "@mui/material";
 import CommentSection from "../comment/CommentSection";
+import LoadingSpinner from "../common/LoadingSpinner";
 function PostDetail() {
   const { id } = useParams();
 
@@ -32,14 +33,18 @@ shows like button if not posted by currentUser
   //get post data on load
   useEffect(() => {
     async function getData() {
-      let data = await NostalgiaApi.getPost(id);
-      setPost(data);
+      try {
+        let data = await NostalgiaApi.getPost(id);
+        setPost(data);
+      } catch (e) {
+        <NotFound />;
+      }
     }
     getData();
   }, [id, open]);
   const comments = post.comments;
   // show loading spinner if content not loaded
-  if (!post || !comments) return <LoadingSpinner />;
+  if (!post || !comments) return <NotFound />;
 
   //delete post when clicked on and current user
   async function handleDeletePost(postId, username) {
