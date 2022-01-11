@@ -31,9 +31,6 @@ function Navigation({ logout }) {
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
   };
-  const handleOpenMobile = (event) => {
-    setAnchorElUser(event.currentTarget);
-  };
 
   const handleCloseNavMenu = () => {
     setAnchorElNav(null);
@@ -188,7 +185,7 @@ function Navigation({ logout }) {
           <MenuItem>{decadeDropDown()}</MenuItem>
 
           {currentUser ? (
-            <MenuItem>
+            <MenuItem onClick={handleCloseNavMenu}>
               <MULink
                 underline="none"
                 color="inherit"
@@ -202,7 +199,9 @@ function Navigation({ logout }) {
             ""
           )}
 
-          <MenuItem>{currentUser ? loggedInNav() : loggedOutNav()}</MenuItem>
+          <MenuItem onClick={handleCloseNavMenu}>
+            {currentUser ? loggedInNav() : loggedOutNav()}
+          </MenuItem>
         </Menu>
       </>
     );
