@@ -100,9 +100,9 @@ shows like button if not posted by currentUser
         <img
           className="img-thumbnail"
           src={post.url}
-          // onError={(e) => {
-          //   e.target.src = "https://i.imgur.com/sjDBHUW.jpg";
-          // }}
+          onError={(e) => {
+            e.target.src = "https://i.imgur.com/sjDBHUW.jpg";
+          }}
         ></img>
       </div>
 

@@ -159,9 +159,6 @@ function Navigation({ logout }) {
       <AppBar elevation={0} position="static" className="AppBar">
         <Container maxWidth="xl">
           <Toolbar disableGutters>
-            {/* <Box sx={{ display: "flex" }}>
-              
-            </Box> */}
             <Link to="/">
               <div className="logo m-2">
                 <b>

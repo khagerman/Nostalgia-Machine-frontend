@@ -16,6 +16,7 @@ import {
   Alert,
   Select,
   MenuItem,
+  OutlinedInput,
 } from "@mui/material";
 /**
    *NewPosr component
@@ -101,13 +102,15 @@ function NewPost() {
                   <Alert severity={"error"}>{errors.title}</Alert>
                 ) : null}
               </FormGroup>
-              <FormGroup>
-                <Field
-                  // className="select"
-                  label="xncnjcmnxecade"
+              <FormGroup className="pb-2">
+                <Select
+                  id="decade"
+                  name="decade"
                   value={decade}
-                  as={Select}
                   onChange={handleChangeSelect}
+                  label="decade"
+                  className="label"
+                  style={{ "aria-label": "Without label" }}
                 >
                   <MenuItem name="1960s" value="1">
                     1960s
@@ -124,7 +127,7 @@ function NewPost() {
                   <MenuItem name="2000s" value="5">
                     2000s
                   </MenuItem>
-                </Field>
+                </Select>
               </FormGroup>
 
               <Button

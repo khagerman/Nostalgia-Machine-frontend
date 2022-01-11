@@ -78,9 +78,9 @@ shows like button if not posted by currentUser
             className="img-fluid"
             component="img"
             image={url}
-            // onError={(e) => {
-            //   e.target.src = "https://i.imgur.com/sjDBHUW.jpg";
-            // }}
+            onError={(e) => {
+              e.target.src = "https://i.imgur.com/sjDBHUW.jpg";
+            }}
             alt={title}
           />
 

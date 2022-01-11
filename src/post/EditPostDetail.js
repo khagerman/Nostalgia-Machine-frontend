@@ -7,7 +7,7 @@ import UserContext from "../auth/UserContext";
 import { Card, FormGroup, TextField, Button, Alert } from "@mui/material";
 import { Formik, Form, Field } from "formik";
 import { object, string } from "yup";
-import "./PostDetail.css";
+import "./EditPostDetail.css";
 export default function EditPostDetail({
   id,
   toggle,
@@ -50,48 +50,50 @@ export default function EditPostDetail({
     title: string().required().min(1).max(100),
   });
   return (
-    <Card className="Card">
-      <Formik
-        initialValues={{
-          url: url,
-          title: title,
-        }}
-        validationSchema={PostSchema}
-        onSubmit={(values) => {
-          handleSubmit(values);
-        }}
-      >
-        {({ errors, touched }) => (
-          <Form className="Modal">
-            <FormGroup>
-              <Field
-                name="url"
-                className="form-control"
-                label="Image URL"
-                as={TextField}
-              />
-              {errors.url && touched.url ? (
-                <Alert severity={"error"}>{errors.url}</Alert>
-              ) : null}
-            </FormGroup>
-            <FormGroup>
-              <Field
-                name="title"
-                id="title"
-                className="form-control"
-                as={TextField}
-                label="Post Text"
-              />
-              {errors.title && touched.title ? (
-                <Alert severity={"error"}>{errors.title}</Alert>
-              ) : null}
-            </FormGroup>
-            <Button variant="contained" type="submit" onSubmit={handleSubmit}>
-              Submit
-            </Button>
-          </Form>
-        )}
-      </Formik>
-    </Card>
+    <div className="EditModal">
+      <Card className="p-4">
+        <Formik
+          initialValues={{
+            url: url,
+            title: title,
+          }}
+          validationSchema={PostSchema}
+          onSubmit={(values) => {
+            handleSubmit(values);
+          }}
+        >
+          {({ errors, touched }) => (
+            <Form className="">
+              <FormGroup className="p-2">
+                <Field
+                  name="url"
+                  className="form-control"
+                  label="Image URL"
+                  as={TextField}
+                />
+                {errors.url && touched.url ? (
+                  <Alert severity={"error"}>{errors.url}</Alert>
+                ) : null}
+              </FormGroup>
+              <FormGroup className="p-2">
+                <Field
+                  name="title"
+                  id="title"
+                  className="form-control"
+                  as={TextField}
+                  label="Post Text"
+                />
+                {errors.title && touched.title ? (
+                  <Alert severity={"error"}>{errors.title}</Alert>
+                ) : null}
+              </FormGroup>
+              <Button variant="contained" type="submit" onSubmit={handleSubmit}>
+                Submit
+              </Button>
+            </Form>
+          )}
+        </Formik>
+      </Card>
+    </div>
   );
 }
