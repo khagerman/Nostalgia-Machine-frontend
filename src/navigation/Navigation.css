@@ -61,6 +61,7 @@ a:active {
 /* logo css by @nodws */
 
 .hamburgerMenu {
+  color: "#ff7cbe";
   position: fixed !important;
   top: 0;
   right: 0;

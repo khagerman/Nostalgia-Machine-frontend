@@ -162,7 +162,7 @@ function Navigation({ logout }) {
           aria-controls="menu-appbar"
           aria-haspopup="true"
           onClick={handleOpenNavMenu}
-          color="secondary"
+          // color="secondary"
           className="hamburgerMenu"
         >
           <i className="fas fa-bars"></i>

@@ -11,6 +11,8 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { Container } from "@mui/material";
 import LoadingSpinner from "./common/LoadingSpinner";
+import "./common/ScrollToTop";
+import ScrollToTop from "./common/ScrollToTop";
 /** Nostalgia Machine application.
  *
  *
@@ -145,26 +147,28 @@ function App() {
   if (!infoLoaded) return <LoadingSpinner />;
   return (
     <BrowserRouter>
-      <UserContext.Provider
-        value={{
-          currentUser,
-          setCurrentUser,
-          likedIds,
-          setLikedIds,
-          likes,
-          setLikes,
-          like,
-          unlike,
-          handleLike,
-        }}
-      >
-        <Container className="App">
-          {/* container for toast alerts */}
-          <ToastContainer autoClose={4000} hideProgressBar={true} />
-          <Navigation logout={logout} />
-          <Routes login={login} signup={signup} />
-        </Container>
-      </UserContext.Provider>
+      <ScrollToTop>
+        <UserContext.Provider
+          value={{
+            currentUser,
+            setCurrentUser,
+            likedIds,
+            setLikedIds,
+            likes,
+            setLikes,
+            like,
+            unlike,
+            handleLike,
+          }}
+        >
+          <Container className="App">
+            {/* container for toast alerts */}
+            <ToastContainer autoClose={4000} hideProgressBar={true} />
+            <Navigation logout={logout} />
+            <Routes login={login} signup={signup} />
+          </Container>
+        </UserContext.Provider>
+      </ScrollToTop>
     </BrowserRouter>
   );
 }
