@@ -7,7 +7,7 @@ import { CardActionArea, IconButton, Modal } from "@mui/material";
 import { Link } from "react-router-dom";
 import UserContext from "../auth/UserContext";
 import NostalgiaApi from "../api";
-import { EditPostDetail } from "./EditPostDetail";
+import EditPostDetail from "./EditPostDetail";
 import "./PostCard.css";
 import "react-toastify/dist/ReactToastify.css";
 
@@ -30,7 +30,7 @@ shows like button if not posted by currentUser
   // show or hide update post form
   const togglePopUp = () => {
     setShow(!show);
-    console.log("works!");
+    // console.log("works!");
   };
 
   //
@@ -66,6 +66,7 @@ shows like button if not posted by currentUser
             updatedPost={updatedPost}
             updatePost={updatePost}
           />
+          {/* <Card>hello</Card> */}
         </Modal>
 
         <CardActionArea
@@ -77,9 +78,9 @@ shows like button if not posted by currentUser
             className="img-fluid"
             component="img"
             image={url}
-            onError={(e) => {
-              e.target.src = "https://i.imgur.com/sjDBHUW.jpg";
-            }}
+            // onError={(e) => {
+            //   e.target.src = "https://i.imgur.com/sjDBHUW.jpg";
+            // }}
             alt={title}
           />
 
