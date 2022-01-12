@@ -30,7 +30,6 @@ shows like button if not posted by currentUser
   // show or hide update post form
   const togglePopUp = () => {
     setShow(!show);
-    // console.log("works!");
   };
 
   //

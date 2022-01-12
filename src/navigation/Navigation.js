@@ -195,7 +195,7 @@ function Navigation({ logout }) {
           aria-haspopup="true"
           onClick={handleOpenNavMenu}
           // color="secondary"
-          className="hamburgerMenu ml-4"
+          className="hamburgerMenu"
         >
           <i className="fas fa-bars"></i>
         </IconButton>
@@ -247,7 +247,7 @@ function Navigation({ logout }) {
         <Container maxWidth="xl">
           <Toolbar disableGutters>
             <Link to="/">
-              <div className="logo m-4">
+              <div className="logo mx-4">
                 <b>
                   n<span>os</span>tal<span>gi</span>a
                 </b>

@@ -65,7 +65,7 @@ function NewPost() {
   return (
     <>
       <h2 className="m-3">New Post/Memory</h2>
-      {console.log(currentUser)}
+
       <Formik
         initialValues={{
           url: "",

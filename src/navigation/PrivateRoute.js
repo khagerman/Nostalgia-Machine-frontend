@@ -25,7 +25,6 @@ function PrivateRoute({ exact, path, children }) {
     currentUser
   );
   if (!NostalgiaApi.token) {
-    console.log("currentUser", currentUser);
     toast.error("Please login to continue", {
       toastId: 1234,
       position: toast.POSITION.TOP_CENTER,
