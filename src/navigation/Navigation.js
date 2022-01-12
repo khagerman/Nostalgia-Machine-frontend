@@ -72,7 +72,14 @@ function Navigation({ logout }) {
             component={Link}
             to="/decade/1"
           >
-            <MenuItem onClick={handleClose}>1960s</MenuItem>
+            <MenuItem
+              onClick={() => {
+                handleClose();
+                handleCloseNavMenu();
+              }}
+            >
+              1960s
+            </MenuItem>
           </MULink>
           <MULink
             underline="none"
@@ -80,7 +87,14 @@ function Navigation({ logout }) {
             component={NavLink}
             to="/decade/2"
           >
-            <MenuItem onClick={handleClose}>1970s</MenuItem>
+            <MenuItem
+              onClick={() => {
+                handleClose();
+                handleCloseNavMenu();
+              }}
+            >
+              1970s
+            </MenuItem>
           </MULink>
           <MULink
             underline="none"
@@ -88,7 +102,14 @@ function Navigation({ logout }) {
             component={NavLink}
             to="/decade/3"
           >
-            <MenuItem onClick={handleClose}>1980s</MenuItem>
+            <MenuItem
+              onClick={() => {
+                handleClose();
+                handleCloseNavMenu();
+              }}
+            >
+              1980s
+            </MenuItem>
           </MULink>
 
           <MULink
@@ -97,7 +118,14 @@ function Navigation({ logout }) {
             component={NavLink}
             to="/decade/4"
           >
-            <MenuItem onClick={handleClose}>1990s</MenuItem>
+            <MenuItem
+              onClick={() => {
+                handleClose();
+                handleCloseNavMenu();
+              }}
+            >
+              1990s
+            </MenuItem>
           </MULink>
           <MULink
             underline="none"
@@ -105,7 +133,14 @@ function Navigation({ logout }) {
             component={NavLink}
             to="/decade/5"
           >
-            <MenuItem onClick={handleClose}>2000s</MenuItem>
+            <MenuItem
+              onClick={() => {
+                handleClose();
+                handleCloseNavMenu();
+              }}
+            >
+              2000s
+            </MenuItem>
           </MULink>
         </Menu>
       </>
@@ -160,7 +195,7 @@ function Navigation({ logout }) {
           aria-haspopup="true"
           onClick={handleOpenNavMenu}
           // color="secondary"
-          className="hamburgerMenu"
+          className="hamburgerMenu mr-2"
         >
           <i className="fas fa-bars"></i>
         </IconButton>
