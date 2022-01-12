@@ -16,7 +16,6 @@ import {
   Alert,
   Select,
   MenuItem,
-  OutlinedInput,
 } from "@mui/material";
 /**
    *NewPosr component
@@ -40,6 +39,9 @@ function NewPost() {
       setCurrentUser(currentUser);
       // goes to decade page of given decade of post
       history.push(`/decade/${parseInt(decade)}`);
+      toast("Post created!", {
+        position: toast.POSITION.TOP_CENTER,
+      });
     } catch (errors) {
       console.error(errors);
       // alerts of errors if any

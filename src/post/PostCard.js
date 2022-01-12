@@ -10,7 +10,7 @@ import NostalgiaApi from "../api";
 import EditPostDetail from "./EditPostDetail";
 import "./PostCard.css";
 import "react-toastify/dist/ReactToastify.css";
-
+import { toast } from "react-toastify";
 export default function PostCard({ id, url, title, username, handleLike }) {
   const { currentUser, likedIds, setLikedIds, setCurrentUser } =
     useContext(UserContext);
@@ -39,25 +39,20 @@ shows like button if not posted by currentUser
       await NostalgiaApi.deletePost(postId);
       let currentUser = await NostalgiaApi.getUser(username);
       setCurrentUser(currentUser);
+      toast.info("Post deleted!", {
+        position: toast.POSITION.TOP_CENTER,
+      });
       return { success: true };
     } catch (errors) {
       console.error(" failed", errors);
       return { success: false, errors };
     }
   }
-  // async function handleEdit(postId) {
-  //   try {
-  //     await NostalgiaApi.editPost(postId);
-  //     return { success: true };
-  //   } catch (errors) {
-  //     console.error("login failed", errors);
-  //     return { success: false, errors };
-  //   }
-  // }
+
   return (
     <div>
       <Card className="Card">
-        <Modal className="CardModal" open={show} onClose={togglePopUp}>
+        <Modal className="CardModal m-3" open={show} onClose={togglePopUp}>
           <EditPostDetail
             id={id}
             toggle={togglePopUp}

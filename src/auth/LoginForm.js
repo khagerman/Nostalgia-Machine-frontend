@@ -40,7 +40,7 @@ function LoginForm({ login }) {
   return (
     <div>
       <h1 className="display-5 mb-3">Login</h1>
-      {/* {console.log(currentUser)} */}
+
       <Formik
         initialValues={{
           username: "",

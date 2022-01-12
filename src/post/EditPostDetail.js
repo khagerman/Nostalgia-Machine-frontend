@@ -51,7 +51,7 @@ export default function EditPostDetail({
   });
   return (
     <div className="EditModal">
-      <Card className="p-4">
+      <Card className="m-4 p-3">
         <Formik
           initialValues={{
             url: url,

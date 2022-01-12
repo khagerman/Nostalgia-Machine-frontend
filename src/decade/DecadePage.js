@@ -4,15 +4,18 @@ import NostalgiaApi from "../api";
 import PostCard from "../post/PostCard";
 import UserContext from "../auth/UserContext";
 import LoadingSpinner from "../common/LoadingSpinner";
+
 import { toast } from "react-toastify";
 import { Grid, Box, Typography } from "@mui/material";
 import "./DecadePage.css";
+import NotFound from "../navigation/NotFound";
 
 function DecadePage() {
   const { decadeId } = useParams();
 
   const [decade, setDecade] = useState([]);
   const { currentUser, likedIds, setLikedIds } = useContext(UserContext);
+  const [infoLoaded, setInfoLoaded] = useState(false);
   /**
    *Decade page
 
@@ -26,14 +29,21 @@ function DecadePage() {
   //get data on page load, when decade changes, and when user posts/edits post
   useEffect(() => {
     async function getData() {
-      let data = await NostalgiaApi.getDecade(decadeId);
-      setDecade(data);
+      try {
+        let data = await NostalgiaApi.getDecade(decadeId);
+        setDecade(data);
+      } catch (e) {
+        setInfoLoaded(true);
+      }
+      setInfoLoaded(true);
     }
+    setInfoLoaded(false);
     getData();
   }, [decadeId, currentUser]);
 
+  if (!infoLoaded) return <LoadingSpinner />;
   let posts = decade.posts;
-
+  if (infoLoaded && !posts) return <NotFound />;
   // unlike post logic
   async function unlike(id) {
     try {
@@ -69,7 +79,7 @@ function DecadePage() {
   return (
     <div className="DecadePage">
       <Box sx={{ m: 2 }}>
-        <h2 className="DecadeTitle"> {decade.name}</h2>
+        <h2 className="DecadeTitle"> {decade?.name}</h2>
       </Box>
       <Box sx={{ m: 3 }}>
         {/* mui grid logic */}
@@ -78,22 +88,18 @@ function DecadePage() {
           spacing={{ xs: 2, md: 3 }}
           columns={{ xs: 4, sm: 8, md: 12 }}
         >
-          {posts ? (
-            posts.map((p) => (
-              <Grid item xs={12} sm={4} md={4} key={p.id}>
-                <PostCard
-                  id={p.id}
-                  username={p.username}
-                  key={p.id}
-                  title={p.title}
-                  url={p.url}
-                  handleLike={() => handleLike(p.id)}
-                />
-              </Grid>
-            ))
-          ) : (
-            <LoadingSpinner />
-          )}
+          {posts?.map((p) => (
+            <Grid item xs={12} sm={4} md={4} key={p.id}>
+              <PostCard
+                id={p.id}
+                username={p.username}
+                key={p.id}
+                title={p.title}
+                url={p.url}
+                handleLike={() => handleLike(p.id)}
+              />
+            </Grid>
+          ))}
         </Grid>
       </Box>
     </div>
