@@ -84,14 +84,15 @@ shows like button if not posted by currentUser
             alt={title}
           />
 
-          <Typography
+          {/* <Typography
             className="title"
             gutterBottom
             variant="h6"
             component="div"
           >
             {title}
-          </Typography>
+          </Typography> */}
+          <h3 className="title m-2">{title}</h3>
         </CardActionArea>
         {username !== currentUser?.username ? (
           <IconButton onClick={handleLike}>

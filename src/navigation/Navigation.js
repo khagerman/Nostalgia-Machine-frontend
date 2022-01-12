@@ -21,7 +21,7 @@ import {
  *
  * Rendered by App.
  */
-//todo add mobile view
+
 function Navigation({ logout }) {
   const { currentUser } = useContext(UserContext);
   const [anchorEl, setAnchorEl] = React.useState(null);
@@ -195,7 +195,7 @@ function Navigation({ logout }) {
           aria-haspopup="true"
           onClick={handleOpenNavMenu}
           // color="secondary"
-          className="hamburgerMenu mr-2"
+          className="hamburgerMenu ml-4"
         >
           <i className="fas fa-bars"></i>
         </IconButton>
@@ -247,7 +247,7 @@ function Navigation({ logout }) {
         <Container maxWidth="xl">
           <Toolbar disableGutters>
             <Link to="/">
-              <div className="logo m-2">
+              <div className="logo m-4">
                 <b>
                   n<span>os</span>tal<span>gi</span>a
                 </b>
