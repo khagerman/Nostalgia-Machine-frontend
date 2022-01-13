@@ -47,8 +47,8 @@ export default function Comment({
     }
   }
   let edit = (
-    <form className="form-control" onSubmit={handleSubmit}>
-      <div>
+    <span>
+      <form className="form-control" onSubmit={handleSubmit}>
         <input
           type="text"
           name="text"
@@ -61,12 +61,13 @@ export default function Comment({
           variant="contained"
           size="small"
           type="submit"
+          className="ml-2"
           onSubmit={handleSubmit}
         >
           edit
         </Button>
-      </div>
-    </form>
+      </form>
+    </span>
   );
 
   return (

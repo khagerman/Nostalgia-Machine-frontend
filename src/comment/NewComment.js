@@ -54,10 +54,11 @@ export default function NewComment({ postId, onUpdate }) {
         <Alert severity="warning">Comment cannot be blank!</Alert>
       ) : null}
       <form onSubmit={handleSubmit}>
-        <label className="m-2" htmlFor="text">
-          Add New Comment
-        </label>
         <span>
+          <label className="m-2" htmlFor="text">
+            Add New Comment
+          </label>
+
           <input
             type="text"
             name="text"
@@ -65,8 +66,7 @@ export default function NewComment({ postId, onUpdate }) {
             value={formData.text}
             onChange={handleChange}
           />
-        </span>
-        <span>
+
           <Button
             variant="contained"
             size="small"

@@ -91,7 +91,7 @@ shows like button if not posted by currentUser
         {username !== currentUser?.username ? (
           <IconButton onClick={handleLike}>
             {/* check if user has already liked */}
-            {likedIds.has(id) && currentUser ? (
+            {likedIds?.has(id) && currentUser ? (
               <i className="fas fa-heart"></i>
             ) : (
               <i className="far fa-heart"></i>

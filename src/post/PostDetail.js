@@ -136,7 +136,12 @@ shows like button if not posted by currentUser
         )}
       </div>
       <div>
-        <Button color="secondary" variant="outlined" onClick={history.goBack}>
+        <Button
+          className="mt-3"
+          color="secondary"
+          variant="outlined"
+          onClick={history.goBack}
+        >
           <i class="fas fa-backward"></i>&nbsp; Go Back
         </Button>
       </div>
