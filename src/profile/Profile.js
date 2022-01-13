@@ -65,12 +65,12 @@ shows like button if not posted by currentUser
           spacing={{ xs: 2, md: 3 }}
           columns={{ xs: 4, sm: 8, md: 12 }}
         >
-          {currentUser?.posts.length === 0 ? (
+          {currentUser?.posts?.length === 0 ? (
             <Box sx={{ mx: "auto" }}>
-              <h4>You haven't shared anything....yet!</h4>
+              <h4 className="m-3">You haven't shared anything....yet!</h4>
             </Box>
           ) : (
-            currentUser?.posts.map((p) => (
+            currentUser?.posts?.map((p) => (
               <Grid item xs={12} sm={4} md={4} key={p.id}>
                 <Container>
                   <PostCard

@@ -1,0 +1,55 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`matches snapshot 1`] = `
+<DocumentFragment>
+  <div>
+    <div
+      class="HomePage"
+    >
+      <div
+        class="Greeting"
+      >
+        <div
+          class="MuiBox-root css-1c5ij41"
+        >
+           
+          <h1
+            class="display-3"
+          >
+            Feel the power of nostalgia
+          </h1>
+        </div>
+        <div
+          class="blockquote"
+        >
+          Hey, testuser!
+        </div>
+        <div
+          class="lead"
+        >
+          Welcome to the 
+          <div
+            class="x0 x1 x2 "
+          >
+            <div
+              style="transition: width 150ms linear; height: auto; width: auto;"
+            >
+              <div
+                class="x0 x3 x4 x5"
+                style="opacity: 1; transform: translateY(0px); position: relative;"
+              >
+                <div
+                  class="MuiBox-root css-4p8408"
+                >
+                  groovy 
+                </div>
+              </div>
+            </div>
+          </div>
+           Nostalgia Machine. A place to share and enjoy memories from times of yore.
+        </div>
+      </div>
+    </div>
+  </div>
+</DocumentFragment>
+`;

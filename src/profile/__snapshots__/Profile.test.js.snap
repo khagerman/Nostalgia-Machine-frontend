@@ -1,0 +1,39 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`matches snapshot 1`] = `
+<DocumentFragment>
+  <div
+    class="MuiContainer-root MuiContainer-maxWidthLg css-1oqqzyl-MuiContainer-root"
+  >
+    <h1
+      class="p-3 display-3"
+    >
+       testuser's Profile
+    </h1>
+    <div
+      class="section"
+    >
+      <h2
+        class="display-4"
+      >
+        Your likes and fond memories
+      </h2>
+      <div
+        class="MuiGrid-root MuiGrid-container MuiGrid-spacing-xs-2 MuiGrid-spacing-md-3 css-1xgjpwf-MuiGrid-root"
+      />
+    </div>
+    <div
+      class="section"
+    >
+      <h2
+        class="display-4"
+      >
+        Memories you have shared
+      </h2>
+      <div
+        class="MuiGrid-root MuiGrid-container MuiGrid-spacing-xs-2 MuiGrid-spacing-md-3 css-1xgjpwf-MuiGrid-root"
+      />
+    </div>
+  </div>
+</DocumentFragment>
+`;

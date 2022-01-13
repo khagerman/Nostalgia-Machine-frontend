@@ -1,0 +1,254 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`matches snapshot 1`] = `
+<DocumentFragment>
+  <nav>
+    <header
+      class="MuiPaper-root MuiPaper-elevation MuiPaper-elevation0 MuiAppBar-root MuiAppBar-colorPrimary MuiAppBar-positionStatic AppBar css-120r8wl-MuiPaper-root-MuiAppBar-root"
+    >
+      <div
+        class="MuiContainer-root MuiContainer-maxWidthXl css-19r6kue-MuiContainer-root"
+      >
+        <div
+          class="MuiToolbar-root MuiToolbar-regular css-1cndkqf-MuiToolbar-root"
+        >
+          <a
+            href="/"
+          >
+            <div
+              class="logo mx-4"
+            >
+              <b>
+                n
+                <span>
+                  os
+                </span>
+                tal
+                <span>
+                  gi
+                </span>
+                a
+              </b>
+               
+              <b>
+                m
+                <span>
+                  a
+                </span>
+                ch
+                <span>
+                  i
+                </span>
+                ne
+              </b>
+            </div>
+          </a>
+          <div
+            class="MuiBox-root css-mfiwgy"
+          >
+            <button
+              aria-controls="basic-menu"
+              aria-haspopup="true"
+              class="MuiButton-root MuiButton-text MuiButton-textInherit MuiButton-sizeMedium MuiButton-textSizeMedium MuiButton-colorInherit MuiButtonBase-root  css-1y942vo-MuiButtonBase-root-MuiButton-root"
+              id="basic-button"
+              tabindex="0"
+              type="button"
+            >
+              Decades
+              <span
+                class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
+              />
+            </button>
+            <a
+              class="MuiTypography-root MuiTypography-inherit MuiLink-root MuiLink-underlineNone css-uxrmkj-MuiTypography-root-MuiLink-root"
+              href="/post/new"
+            >
+              <button
+                class="MuiButton-root MuiButton-text MuiButton-textInherit MuiButton-sizeMedium MuiButton-textSizeMedium MuiButton-colorInherit MuiButtonBase-root  css-1y942vo-MuiButtonBase-root-MuiButton-root"
+                tabindex="0"
+                type="button"
+              >
+                New Post
+                <span
+                  class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
+                />
+              </button>
+            </a>
+          </div>
+          <div
+            class="MuiBox-root css-mfiwgy"
+          >
+            <a
+              class="MuiTypography-root MuiTypography-inherit MuiLink-root MuiLink-underlineNone css-uxrmkj-MuiTypography-root-MuiLink-root"
+              href="/profile"
+            >
+              <button
+                class="MuiButton-root MuiButton-text MuiButton-textInherit MuiButton-sizeMedium MuiButton-textSizeMedium MuiButton-colorInherit MuiButtonBase-root  css-1y942vo-MuiButtonBase-root-MuiButton-root"
+                tabindex="0"
+                type="button"
+              >
+                Profile
+                <span
+                  class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
+                />
+              </button>
+            </a>
+            <a
+              class="MuiTypography-root MuiTypography-inherit MuiLink-root MuiLink-underlineNone css-uxrmkj-MuiTypography-root-MuiLink-root"
+              href="/"
+            >
+              <button
+                class="MuiButton-root MuiButton-text MuiButton-textInherit MuiButton-sizeMedium MuiButton-textSizeMedium MuiButton-colorInherit MuiButtonBase-root  css-1y942vo-MuiButtonBase-root-MuiButton-root"
+                tabindex="0"
+                type="button"
+              >
+                Logout testuser
+                <span
+                  class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
+                />
+              </button>
+            </a>
+          </div>
+          <div
+            class="MuiBox-root css-hbsnkx"
+          >
+            <button
+              aria-controls="menu-appbar"
+              aria-haspopup="true"
+              class="MuiButtonBase-root MuiIconButton-root MuiIconButton-sizeLarge hamburgerMenu css-mf1cb5-MuiButtonBase-root-MuiIconButton-root"
+              tabindex="0"
+              type="button"
+            >
+              <i
+                class="fas fa-bars"
+              />
+              <span
+                class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
+              />
+            </button>
+          </div>
+        </div>
+      </div>
+    </header>
+  </nav>
+</DocumentFragment>
+`;
+
+exports[`matches snapshot when logged out 1`] = `
+<DocumentFragment>
+  <nav>
+    <header
+      class="MuiPaper-root MuiPaper-elevation MuiPaper-elevation0 MuiAppBar-root MuiAppBar-colorPrimary MuiAppBar-positionStatic AppBar css-120r8wl-MuiPaper-root-MuiAppBar-root"
+    >
+      <div
+        class="MuiContainer-root MuiContainer-maxWidthXl css-19r6kue-MuiContainer-root"
+      >
+        <div
+          class="MuiToolbar-root MuiToolbar-regular css-1cndkqf-MuiToolbar-root"
+        >
+          <a
+            href="/"
+          >
+            <div
+              class="logo mx-4"
+            >
+              <b>
+                n
+                <span>
+                  os
+                </span>
+                tal
+                <span>
+                  gi
+                </span>
+                a
+              </b>
+               
+              <b>
+                m
+                <span>
+                  a
+                </span>
+                ch
+                <span>
+                  i
+                </span>
+                ne
+              </b>
+            </div>
+          </a>
+          <div
+            class="MuiBox-root css-mfiwgy"
+          >
+            <button
+              aria-controls="basic-menu"
+              aria-haspopup="true"
+              class="MuiButton-root MuiButton-text MuiButton-textInherit MuiButton-sizeMedium MuiButton-textSizeMedium MuiButton-colorInherit MuiButtonBase-root  css-1y942vo-MuiButtonBase-root-MuiButton-root"
+              id="basic-button"
+              tabindex="0"
+              type="button"
+            >
+              Decades
+              <span
+                class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
+              />
+            </button>
+          </div>
+          <div
+            class="MuiBox-root css-mfiwgy"
+          >
+            <a
+              class="MuiTypography-root MuiTypography-inherit MuiLink-root MuiLink-underlineNone css-awo11y-MuiTypography-root-MuiLink-root"
+              href="/login"
+            >
+              <button
+                class="MuiButton-root MuiButton-text MuiButton-textInherit MuiButton-sizeMedium MuiButton-textSizeMedium MuiButton-colorInherit MuiButtonBase-root  css-1y942vo-MuiButtonBase-root-MuiButton-root"
+                tabindex="0"
+                type="button"
+              >
+                Login
+                <span
+                  class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
+                />
+              </button>
+            </a>
+            <a
+              class="MuiTypography-root MuiTypography-inherit MuiLink-root MuiLink-underlineNone css-uxrmkj-MuiTypography-root-MuiLink-root"
+              href="/signup"
+            >
+              <button
+                class="MuiButton-root MuiButton-text MuiButton-textInherit MuiButton-sizeMedium MuiButton-textSizeMedium MuiButton-colorInherit MuiButtonBase-root  css-1y942vo-MuiButtonBase-root-MuiButton-root"
+                tabindex="0"
+                type="button"
+              >
+                Signup
+                <span
+                  class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
+                />
+              </button>
+            </a>
+          </div>
+          <div
+            class="MuiBox-root css-hbsnkx"
+          >
+            <button
+              aria-controls="menu-appbar"
+              aria-haspopup="true"
+              class="MuiButtonBase-root MuiIconButton-root MuiIconButton-sizeLarge hamburgerMenu css-mf1cb5-MuiButtonBase-root-MuiIconButton-root"
+              tabindex="0"
+              type="button"
+            >
+              <i
+                class="fas fa-bars"
+              />
+              <span
+                class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
+              />
+            </button>
+          </div>
+        </div>
+      </div>
+    </header>
+  </nav>
+</DocumentFragment>
+`;
