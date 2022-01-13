@@ -48,14 +48,17 @@ export default function Comment({
   }
   let edit = (
     <span>
-      <form className="form-control" onSubmit={handleSubmit}>
-        <input
-          type="text"
-          name="text"
-          id="text"
-          value={comment}
-          onChange={handleChange}
-        />
+      <form className="form-inline p-3" onSubmit={handleSubmit}>
+        <div className="form-group">
+          <input
+            type="text"
+            name="text"
+            id="text"
+            value={comment}
+            onChange={handleChange}
+          />
+        </div>
+
         <Button
           type="submit"
           variant="contained"
