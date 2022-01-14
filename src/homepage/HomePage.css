@@ -15,3 +15,9 @@
   text-shadow: 0 -40px 100px, 0 0 2px, 0 0 1em #ff44a2, 0 0 0.5em #ff44a2,
     0 0 0.1em #ff44a2;
   /* 0 10px 3px #000; */
+.Toastify {
+  background-color: #f7f7f9;
+}
+.Toastify span {
+  color: #dd44ff;
+}

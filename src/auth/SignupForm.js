@@ -27,6 +27,9 @@ function SignupForm({ signup }) {
   async function handleSubmit(values) {
     let result = await signup(values);
     if (result.success) {
+      toast.success("Creating account...", {
+        position: toast.POSITION.TOP_CENTER,
+      });
       history.push("/");
     } else {
       console.error(result.errors);

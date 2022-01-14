@@ -29,6 +29,9 @@ function LoginForm({ login }) {
     let result = await login(values);
     if (result.success) {
       //successful go to home page else alert user
+      toast.success("Logging in...", {
+        position: toast.POSITION.TOP_CENTER,
+      });
       history.push("/");
     } else {
       console.error(result.errors);
