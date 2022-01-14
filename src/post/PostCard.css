@@ -10,6 +10,7 @@
   height: 50vw;
   /* background-position: center center; */
 }
+
 @media (min-width: 600px) {
   .Card img {
     width: 100%;
@@ -34,7 +35,7 @@
   text-transform: capitalize;
   font-family: "Rubik", sans-serif;
   font-weight: 400;
-  font-size: 1.75rem;
+  font-size: 3.5vh;
 }
 
 .fas {

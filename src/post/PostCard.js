@@ -50,7 +50,7 @@ shows like button if not posted by currentUser
 
   return (
     <div>
-      <Card className="Card">
+      <Card className="Card" elevation={5}>
         <Modal className="CardModal m-3" open={show} onClose={togglePopUp}>
           <EditPostDetail
             id={id}

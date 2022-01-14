@@ -12,10 +12,11 @@ a:active {
 @import url(//fonts.googleapis.com/css?family=Vibur);
 
 .logo b {
-  font: 400 5vh "Vibur";
-  color: #fee;
+  font: 600 7vh "Vibur";
+  color: #ff44a2;
+  /* color: #fee;
   text-shadow: 0 -40px 100px, 0 0 2px, 0 0 1em #ff44a2, 0 0 0.5em #ff44a2,
-    0 0 0.1em #ff44a2;
+    0 0 0.1em #ff44a2; */
   /* 0 10px 3px #000; */
 }
 .logo b span {
@@ -25,7 +26,8 @@ a:active {
   animation: blink linear infinite 3s;
 }
 
-/* //blinking logo-may be too annnoying */
+/* blinking logo-may be too annnoying */
+
 /* @keyframes blink {
   78% {
     color: inherit;
@@ -56,8 +58,8 @@ a:active {
   92.5% {
     color: inherit;
     text-shadow: inherit;
-  } */
-/* } */
+  }  */
+/* }
 /* logo css by @nodws */
 
 .hamburgerMenu {

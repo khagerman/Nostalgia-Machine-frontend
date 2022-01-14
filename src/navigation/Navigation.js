@@ -1,8 +1,8 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { Link, NavLink } from "react-router-dom";
 import "./Navigation.css";
 import UserContext from "../auth/UserContext";
-
+import MobileMenu from "./MobileMenu";
 import {
   AppBar,
   Button,
@@ -13,6 +13,13 @@ import {
   Toolbar,
   Container,
   Link as MULink,
+  SwipeableDrawer,
+  List,
+  ListItem,
+  Accordion,
+  AccordionSummary,
+  Typography,
+  AccordionDetails,
 } from "@mui/material";
 /** Navigation bar for site. Shows up on every page.
  *
@@ -185,62 +192,7 @@ function Navigation({ logout }) {
       </>
     );
   }
-  //mobile
-  function mobileMenu() {
-    return (
-      <>
-        <IconButton
-          size="large"
-          aria-controls="menu-appbar"
-          aria-haspopup="true"
-          onClick={handleOpenNavMenu}
-          // color="secondary"
-          className="hamburgerMenu"
-        >
-          <i className="fas fa-bars"></i>
-        </IconButton>
-        <Menu
-          id="menu-appbar"
-          anchorEl={anchorElNav}
-          anchorOrigin={{
-            vertical: "bottom",
-            horizontal: "right",
-          }}
-          keepMounted
-          transformOrigin={{
-            vertical: "top",
-            horizontal: "left",
-          }}
-          open={Boolean(anchorElNav)}
-          onClose={handleCloseNavMenu}
-          sx={{
-            display: { xs: "block", md: "none" },
-          }}
-        >
-          <MenuItem>{decadeDropDown()}</MenuItem>
 
-          {currentUser ? (
-            <MenuItem onClick={handleCloseNavMenu}>
-              <MULink
-                underline="none"
-                color="inherit"
-                component={NavLink}
-                to="/post/new"
-              >
-                <Button color="inherit">New Post</Button>
-              </MULink>
-            </MenuItem>
-          ) : (
-            ""
-          )}
-
-          <MenuItem onClick={handleCloseNavMenu}>
-            {currentUser ? loggedInNav() : loggedOutNav()}
-          </MenuItem>
-        </Menu>
-      </>
-    );
-  }
   return (
     <nav>
       <AppBar elevation={0} position="static" className="AppBar">
@@ -277,10 +229,12 @@ function Navigation({ logout }) {
               )}
             </Box>
 
-            <Box sx={{ flexGrow: 1, display: { xs: "none", sm: "flex" } }}>
+            <Box sx={{ flexGrow: 0, display: { xs: "none", sm: "flex" } }}>
               {currentUser ? loggedInNav() : loggedOutNav()}
             </Box>
-            <Box sx={{ display: { sm: "none" } }}>{mobileMenu()}</Box>
+            <Box sx={{ display: { sm: "none" } }}>
+              {<MobileMenu logout={logout} />}
+            </Box>
           </Toolbar>
         </Container>
       </AppBar>

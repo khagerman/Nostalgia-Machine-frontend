@@ -1,3 +1,62 @@
+# Nostalgia Machine
+
+> nos·tal·gia /näˈstaljə,nəˈstaljə/ a sentimental longing or wistful affection for the past, typically for a period or place with happy personal associations.
+
+Welcome to the Nostalgia Machine! The Nostalgia Machine is a full-stack, responsive, single page application with a nodeJS/Express backend and a React frontend. that allows users to travel through time by sharing and viewing anything that brings intense nostalgia. It's a community where you can reminise with others and share powerful memories.
+
+## **Visit it here: https://nostalgiamachine.surge.sh**
+
+    If you don't feel like creating an account:
+    username:testuser2022 password: test123
+
+\*\*
+
+## Features
+
+Travel down memory lane...
+
+- Browse memories by decade
+- View comments
+- Login/Signup
+- **Logged in members can:**
+- Share, edit, and delete posts/memories
+- Like posts/memories
+- Make comments on posts
+
+## _Made Using:_
+
+**FrontEnd**
+
+- React
+- Create React App
+- Javascript
+- CSS
+- Axios
+- Yup
+- Formik
+- JSON Web Token
+- React Router
+- React-toastify
+- React-text-loop
+- Bootstrap
+- Material UI
+- jwt-decode
+- Font Awesome
+
+**Backend**
+
+- Node.js
+- Express
+- Jest
+- JSON Web Token
+- Bcrypt
+- PostgresSQL
+- JSON Schema
+
+  **API here: https://nostalgia-api.herokuapp.com/**
+
+  **_detailed list of routes can be found at_** **Code:https://github.com/khagerman/Nostalgia-Machine-backend**
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
