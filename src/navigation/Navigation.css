@@ -19,6 +19,11 @@ a:active {
     0 0 0.1em #ff44a2; */
   /* 0 10px 3px #000; */
 }
+@media screen and (max-width: 640px) {
+  .logo b {
+    font: 600 5vh "Vibur";
+  }
+}
 .logo b span {
   animation: blink linear infinite 2s;
 }
