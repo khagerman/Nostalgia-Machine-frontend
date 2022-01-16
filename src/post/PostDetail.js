@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useContext } from "react";
 import { useParams, useHistory } from "react-router-dom";
 import NostalgiaApi from "../api";
-
+import "./PostDetail.css";
 import NotFound from "../navigation/NotFound";
 import UserContext from "../auth/UserContext";
 import EditPostDetail from "./EditPostDetail";
@@ -95,7 +95,7 @@ shows like button if not posted by currentUser
 
   return (
     <div>
-      <h1 className="display-5 m-4 title">{post.title}</h1>
+      <h1 className="m-4 posttitle">{post.title}</h1>
 
       <Modal open={open} onClose={handleClose}>
         <EditPostDetail id={id} url={post.url} title={post.title} />
