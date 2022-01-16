@@ -70,6 +70,6 @@ a:active {
 .hamburgerMenu {
   color: "#ff7cbe";
   position: absolute !important;
-  top: 0;
-  right: 0;
+  right: 1px !important;
+  top: 5px !important;
 }

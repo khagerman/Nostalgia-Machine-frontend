@@ -42,17 +42,18 @@ export default function MobileMenu({ logout }) {
 
   return (
     <>
-      <IconButton
-        size="large"
-        aria-controls="menu-appbar"
-        aria-haspopup="true"
-        onClick={toggleDrawer("right", true)}
-        // color="secondary"
-        className="hamburgerMenu"
-      >
-        <i className="fas fa-bars"></i>
-      </IconButton>
-
+      <Box sx={{ flexGrow: 0, display: { xs: "flex" } }}>
+        <IconButton
+          size="large"
+          aria-controls="menu-appbar"
+          aria-haspopup="true"
+          onClick={toggleDrawer("right", true)}
+          // color="secondary"
+          className="hamburgerMenu"
+        >
+          <i className="fas fa-bars"></i>
+        </IconButton>
+      </Box>
       <SwipeableDrawer
         anchor={"right"}
         variant="temporary"
