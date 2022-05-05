@@ -93,6 +93,20 @@ shows like button if not posted by currentUser
       return { success: false, errors };
     }
   }
+  //helper function to convert id to decade name
+  function decadeName(id) {
+    if (id === 1) {
+      return "1960s";
+    } else if (id === 2) {
+      return "1970s";
+    } else if (id === 3) {
+      return "1980s";
+    } else if (id === 4) {
+      return "1990s";
+    } else {
+      return "2000s";
+    }
+  }
 
   return (
     <div>
@@ -111,7 +125,7 @@ shows like button if not posted by currentUser
           }}
         ></img>
       </div>
-      <p className="author lead mt-1"> Decade: {post.decade_id}</p>
+      <p className="author lead mt-1"> Decade: {decadeName(post.decade_id)}</p>
       <p className="author lead mt-1"> Posted by: {post.username}</p>
 
       <div>
