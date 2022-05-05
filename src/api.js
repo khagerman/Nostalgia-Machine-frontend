@@ -110,6 +110,15 @@ class NostalgiaApi {
 
     return res;
   }
+  // featured posts
+  static async getNewest() {
+    let res = await this.request(`featured/new`, {}, "get");
+    return res;
+  }
+  static async getMostLiked() {
+    let res = await this.request(`featured/loved`, {}, "get");
+    return res;
+  }
 }
 
 export default NostalgiaApi;

@@ -4,7 +4,7 @@ import "./index.css";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
-
+import * as serviceWorker from "./serviceWorker";
 let theme = createTheme({
   palette: {
     primary: {
@@ -41,3 +41,4 @@ ReactDOM.render(
 // to log results (for example: reportWebVitals(console.error))
 // or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
 reportWebVitals();
+serviceWorker.register();

@@ -4,17 +4,10 @@ import "./Navigation.css";
 import UserContext from "../auth/UserContext";
 
 import {
-  AppBar,
-  Button,
-  Menu,
-  MenuItem,
   Box,
   IconButton,
-  Toolbar,
-  Container,
   Link as MULink,
   SwipeableDrawer,
-  List,
   ListItem,
   Accordion,
   AccordionSummary,

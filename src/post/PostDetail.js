@@ -36,6 +36,7 @@ shows like button if not posted by currentUser
       try {
         let data = await NostalgiaApi.getPost(id);
         setPost(data);
+        console.log(data);
       } catch (e) {
         <NotFound />;
       }
@@ -110,7 +111,7 @@ shows like button if not posted by currentUser
           }}
         ></img>
       </div>
-
+      <p className="author lead mt-1"> Decade: {post.decade_id}</p>
       <p className="author lead mt-1"> Posted by: {post.username}</p>
 
       <div>
