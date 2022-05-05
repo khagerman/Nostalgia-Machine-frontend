@@ -2,7 +2,7 @@
 
 > nos·tal·gia /näˈstaljə,nəˈstaljə/ a sentimental longing or wistful affection for the past, typically for a period or place with happy personal associations.
 
-Welcome to the Nostalgia Machine! The Nostalgia Machine is a full-stack, responsive, single page application with a nodeJS/Express backend and a React frontend. that allows users to travel through time by sharing and viewing anything that brings intense nostalgia. It's a community where you can reminise with others and share powerful memories.
+Welcome to the Nostalgia Machine! The Nostalgia Machine is a full-stack, responsive, single page application with a Node/Express backend and a React frontend. that allows users to travel through time by sharing and viewing anything that brings intense nostalgia. It's a community where you can reminisce with others and share powerful memories.
 
 ## **Visit it here: https://nostalgiamachine.surge.sh**
 
